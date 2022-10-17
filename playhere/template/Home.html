@@ -28,13 +28,13 @@
             </li>
 
               <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="/#about">About</a>
             </li>
 
               {% if user.is_authenticated %}
 
               <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              <a class="nav-link" href="{% url 'logout' %">Logout</a>
             </li>
 
 
@@ -52,7 +52,7 @@
               {% else %}
 
              <li class="nav-item">
-              <a class="nav-link" href="#login">Login</a>
+              <a class="nav-link" href="/#login">Login</a>
             </li>
 
             <li class="nav-item">
@@ -155,6 +155,8 @@
                 <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
 
               </form>
+
+                <p>Click <a href="{% url 'register' %}" >here</a> to Register</p>
 
             </div>
           </div>

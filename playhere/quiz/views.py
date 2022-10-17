@@ -3,9 +3,8 @@ from .models import profile,cat,questions
 import random
 
 lis = []
-
-
 def profile1(request):
+    lis.clear()
     rank = 0
     pobj = profile.objects.filter(p_username=request.user.username).order_by("-id")
     code = profile.objects.filter(category = 'coding' , p_username=request.user.username).count()
@@ -30,6 +29,7 @@ def profile1(request):
 
 
 def cate(request):
+    lis.clear()
     catobj = cat.objects.all()
 
     if request.method == 'POST':
@@ -46,6 +46,7 @@ def cate(request):
         return redirect(f'/quiz/ques/{q_number}')
 
     return render(request,'category.html',{'category':catobj})
+
 
 
 def ques(request,idd):
@@ -75,16 +76,22 @@ def ques(request,idd):
             if int(total_cat[q_number].answer) == int(select):
                 lis.append(1)
                 print('correct answer')
-                if len(lis) == 10:
-                    return redirect('/quiz/result')
+                if len(lis) >= 10:
+                    sumlis = sum(lis)
+                    print(sumlis)
+                    lis.clear()
+                    return redirect(f'/quiz/result/{sumlis}')
 
                 return redirect(f'/quiz/ques/{random.randint(0,count)}')
 
             else:
                 lis.append(0)
                 print('incorrect Answer')
-                if len(lis) == 10:
-                    return redirect('/quiz/result')
+                if len(lis) >= 10:
+                    sumlis = sum(lis)
+                    print(sumlis)
+                    lis.clear()
+                    return redirect(f'/quiz/result/{sumlis}')
 
                 return redirect(f'/quiz/ques/{random.randint(0, count)}')
 
@@ -97,18 +104,32 @@ def ques(request,idd):
     return render(request,'index.html',dis)
 
 
-def result(request):
-    # try:
-    uname = request.user.username
-    ucategory = request.session['category']
-    uscore = sum(lis)
-    #comming soon
-    utimetaken = 0
+def result(request,slis):
+    try:
+        emoji = {
+            1:'https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g',
+            2:'https://media0.giphy.com/media/h4OGa0npayrJX2NRPT/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g',
+            3:'https://media0.giphy.com/media/kfS15Gnvf9UhkwafJn/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g',
+            4:'https://media2.giphy.com/media/j4l0mCdcTFRyY4Bc5s/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g',
+            5:'https://media0.giphy.com/media/USUIWSteF8DJoc5Snd/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
+            6:'https://media4.giphy.com/media/hp3dmEypS0FaoyzWLR/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
+            7:'https://media1.giphy.com/media/hVlZnRT6QW1DeYj6We/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
+            8:'https://media4.giphy.com/media/UQDSBzfyiBKvgFcSTw/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
+            9:'https://media2.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
+            10:'https://media3.giphy.com/media/lRXY41yFFi9RfNXyPN/giphy.gif?cid=ecf05e47mxr383ar6o6yxhzr5iaoa8j6iw17z3axmyc3dgau&rid=giphy.gif&ct=g',
+            }
+        ucategory = request.session['category']
+        uscore = slis
+        emo = emoji[uscore]
+        #comming soon
+        utimetaken = 0
 
-    save_user_data = profile(p_username=uname, category=ucategory, score=uscore, timetkaen=utimetaken )
-    save_user_data.save()
-    pobj = profile.objects.all()
-    lis = []
-    return render(request,'result.html',{'pobj':pobj})
-    # except:
-    #     return redirect('/')
+        if request.user.is_authenticated :
+            uname = request.user.username
+
+            save_user_data = profile(p_username=uname, category=ucategory, score=uscore, timetkaen=utimetaken )
+            save_user_data.save()
+
+        return render(request,'result.html',{'score':uscore,'emoji':emo})
+    except:
+         return redirect('/')

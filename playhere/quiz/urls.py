@@ -8,7 +8,7 @@ urlpatterns = [
     path("",views.profile1, name ="profile"),
     path("category/",views.cate, name ="category"),
     path('ques/<int:idd>',views.ques,name="question"),
-    path('result/',views.result,name='result')
+    path('result/<int:slis>',views.result,name='result')
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
