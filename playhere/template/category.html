@@ -1,0 +1,28 @@
+<!--enoji Link : https://giphy.com/explore/emoji-sticker-->
+{% extends 'Home.html' %}
+
+{% block content %}
+    
+<!--  main category    -->
+      
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for i in category %}
+      <form method="post">
+        {% csrf_token %}
+      <div class="col">
+        <div class="{{i.bg_image}}">
+          <div class="card-body cb">
+            <h5 class="card-title title" >{{i.cat}}</h5>
+            <p class="card-text">{{i.c_bio}}</p>
+              <input type="hidden" name ="catbtn" value="{{i.cat}}">
+              <button type="submit" class="bt">➟</button>
+          </div>
+        </div>
+      </div>
+      </form>
+      {% endfor %}
+  </div>
+</div>
+      
+{% endblock %}

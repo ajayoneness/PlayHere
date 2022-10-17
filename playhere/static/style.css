@@ -1,0 +1,335 @@
+*{
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    
+}
+body{
+    background-color:darkseagreen;
+}
+
+.card{
+    background-image: linear-gradient(to right, rgba(200,20,200,5), rgba(25,0,0,1));
+    box-shadow: 0px 2px 10px black; 
+    padding: 50px;
+    transition: 5s;
+    
+}
+
+/*
+.card:hover{
+    background-image: linear-gradient(to right,rgba(25,0,0,1), rgba(200,20,200,5));
+     
+}
+*/
+
+
+.txt{
+    color: aliceblue;
+    text-shadow: 0px 0px 10px black;
+    font-size: 25px;
+    animation-name: codeaj;
+    animation-duration:3s;
+}
+
+@keyframes codeaj{
+    from {
+      font-size: 0px;  
+    }
+    to{
+        font-size: 25;
+    }
+}
+
+.sn{
+    font-size: 100px;
+    font-weight: bold;
+    color: darkseagreen;
+    text-shadow: 0px 0px 10px black;
+}
+
+.sn1{
+    font-size: 100px;
+    font-weight: bold;
+    color: rgba(200,20,200,5);
+    text-shadow: 0px 0px 10px black;
+    text-align: center;
+}
+
+
+.btn{
+    box-shadow: 1px 2px 10px black;
+}
+
+.im{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    animation-name: codeaj1;
+    animation-duration:3s;
+/*    animation-iteration-count: infinite;*/
+    
+}
+@keyframes codeaj1{
+    from{
+        width: 100px;
+        
+    }
+    to{
+        120px;
+    }
+    
+}
+
+.result {
+    text-align: center;
+    font-weight: bold;
+    color: azure;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0px 0px 20px black;
+}
+
+#bt{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    background-color: lightseagreen;
+    color: white;
+    
+    
+}
+
+#bt:hover{
+    box-shadow: 0px 0px 20px yellow;
+    border : 2px solid yellow;
+    background-color: deepskyblue;
+    
+}
+
+.card1{
+    background-image: url('https://www.bigdataframework.org/wp-content/uploads/2019/01/ai-blur-codes-577585.jpg');
+    
+    
+}
+
+.card1:hover{
+    background-image: url('https://blog-assets.shawacademy.com/uploads/2020/03/sao_0532-min-5e6708506cb96.jpg');
+    background-position: center;
+}
+
+
+.card2{
+    background-image: url('https://dailypost.files.wordpress.com/2015/04/turnpike-blur.jpg');
+    
+    
+}
+
+.card2:hover{
+    background-image: url('https://images.pexels.com/photos/858076/pexels-photo-858076.jpeg?cs=srgb&dl=pexels-steve-johnson-858076.jpg&fm=jpg');
+    background-position: center;
+}
+
+.card3{
+    background-image: url('https://blog-assets.shawacademy.com/uploads/2020/03/sao_0532-min-5e6708506cb96.jpg');
+    
+    
+}
+
+.card3:hover{
+    background-image: url('https://www.bigdataframework.org/wp-content/uploads/2019/01/ai-blur-codes-577585.jpg');
+    background-position: center;
+}
+
+
+
+
+.cb{
+    color: white;
+    filter: blur();
+}
+
+.bt{
+    padding: 5px;
+    border :none;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    color: white;
+    background-color:darkmagenta;
+    box-shadow: 0px 0px 10px black;
+    transition: 1s;
+    font-size: 60px;
+
+}
+
+.bt:hover{
+    background-color:darkturquoise ;
+    box-shadow: 1px 1px 20px black;
+}
+
+.title{
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 10px black;
+    font-size: 20px
+}
+
+.main{
+    
+   background-image: url('https://blog-assets.shawacademy.com/uploads/2020/03/sao_0532-min-5e6708506cb96.jpg');
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    transition: 3s;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px black;
+    
+}
+
+.main:hover{
+    background-position: center;
+}
+
+
+.text{
+    color: white;
+    width: 500px;
+    text-align: center;
+    padding-top: 50px;
+    text-shadow: 0px 0px 10px black;
+  
+}
+
+.image{
+    
+    width: 400px;
+ 
+    
+}
+
+.rounded-t-5 {
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+    }
+
+    @media (min-width: 992px) {
+      .rounded-tr-lg-0 {
+        border-top-right-radius: 0;
+      }
+
+      .rounded-bl-lg-5 {
+        border-bottom-left-radius: 0.5rem;
+      }
+    }
+.card2 {
+    color: white;
+}
+
+
+.cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
+      .cascading-right {
+        margin-right: 0;
+      }
+    }
+
+nav{
+    box-shadow: 0px 0px 20px black;
+}
+
+#abt{
+    background-image: url('https://blog-assets.shawacademy.com/uploads/2020/03/sao_0532-min-5e6708506cb96.jpg');
+    
+}
+
+#abt .image{
+    position: relative;
+    left: 20px;
+    padding-top: 20px;
+}
+
+#abt:hover{
+    background-image: url('https://www.bigdataframework.org/wp-content/uploads/2019/01/ai-blur-codes-577585.jpg');
+    background-position: center;
+}
+
+.gradient-custom {
+/* fallback for old browsers */
+background: #f6d365;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+
+#prof{
+    background-color: white;
+}
+
+.btt{
+
+    padding :20px;
+    text-align : center;
+    position : relative;
+    left : 30%;
+    top : -30px;
+    background-color : transparent;
+    border : 2px solid yellow;
+    border-radius : 8px;
+    color : white;
+    font-size : 20px;
+    font-weight :bold;
+    box-shadow : 0px 0px 50px yellow;
+    animation-name: codeaj4;
+    animation-duration:5s;
+    animation-iteration-count: infinite;
+    text-shadow : 0px 0px 10px black;
+}
+
+
+@keyframes codeaj4{
+    0% {
+      box-shadow : 0px 0px 50px yellow;
+      border : 2px solid yellow;
+      color: whites;
+      background-color : yellow;
+    }
+    25% {
+      box-shadow : 0px 0px 50px red;
+      border : 2px solid red;
+      color: white;
+      background-color : red;
+    }
+    50% {
+      box-shadow : 0px 0px 50px orange;
+      border : 2px solid orange;
+      color: white;
+      background-color : orange;
+    }
+    75% {
+      box-shadow : 0px 0px 50px blue;
+      border : 2px solid blue;
+      color: white;
+      background-color : blue;
+    }
+    100%{
+      box-shadow : 0px 0px 50px deepskyblue;
+      border : 2px solid deepskyblue;
+      color: white;
+      background-color : deepskyblue;
+    }
+}
+
+
+
+
