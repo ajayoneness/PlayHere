@@ -22,7 +22,7 @@ def register(request):
             else:
                 user=User.objects.create_user(username=uname,password=pass1,email=email,first_name = fname,last_name = lname)
                 user.save()
-                return redirect('/')
+                return redirect('/#login')
         else:
             messages.info(request, 'both password are not save')
 
