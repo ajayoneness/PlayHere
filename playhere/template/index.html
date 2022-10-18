@@ -8,11 +8,13 @@
         {% csrf_token %}
       <div class="card  boxa" style= "background-image: linear-gradient(to right, rgba({{r1}},{{g1}},{{b1}},1), rgba({{r2}},{{g2}},{{b2}},1));" >
           <div class="card-body">
-              <p style="font-weight:bold; font-size:15px; color:white; position:absolute; top:20px; ">Topic : ( {{q_obj.category}} ) / {{q_obj.topic}}</p>
+<!--              <input type='hidden' name='time' id='time' >-->
+              <p style="font-weight:bold; font-size:15px; color:white; position:absolute; top:20px; ">Topic : ( {{q_obj.category}} ) / {{q_obj.topic}}  ( <span id="time"  style="color: red;"></span> sec )</p>
+
               {% if q_obj == '' %}
               <h5 class="card-title txt">We are working on this coming soon.....</h5>
               {% else %}
-            <h5 class="card-title txt">{{q_obj.question}}</h5><br>
+            <h5 class="card-title txt"><pre>{{q_obj.question}}</pre></h5><br>
               {% endif %}
 
               <div style="color: white; font-weight:bold; font-size : 20px;">
@@ -26,5 +28,14 @@
         </div>
       </form>
 </div>
+
+<script>
+
+    var tim=0;
+    var countup = setInterval(function(){
+        ++tim;
+        document.getElementById('time').innerHTML = tim;
+    },1000);
+</script>
       
 {% endblock %}

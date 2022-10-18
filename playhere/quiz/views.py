@@ -68,6 +68,8 @@ def ques(request,idd):
 
     if request.method == 'POST':
         try:
+            #ti = request.POST['time']
+            #print("time", ti)
             select = request.POST['o']
         except:
             select =''
