@@ -1,0 +1,39 @@
+<!--enoji Link : https://giphy.com/explore/emoji-sticker-->
+{% extends 'Home.html' %}
+{% load static %}
+{% block content %}
+    
+<!--  main category    -->
+      
+<div class="container raj pt-5">
+  <div class="row p-5 " >
+    <div class="col m-3">
+      <h3>Make</h3>
+      <h1 style="font-size : 90px; font-weight: bold;">10,000</h1>
+      <h1>Rank</h1>
+      <h5>to get Certificate</h5>
+    </div>
+
+
+    <div class="col"style="text-align : center">
+
+      <div class="row">
+        <img style=" box-shadow : 0px 0px 10px black; background-color: black; border-radius: 8px;" src="{% static 'img/certificate.jpg' %}">
+      </div>
+      {% if rank >= 10000 %}
+      <div class="row">
+        <button type="button" class="btn btn-success mt-3" >DOWNLOAD 🡇 </button>
+      </div>
+      {% else %}
+      <div class="row">
+        <button type="button" class="btn btn-success mt-3" disabled>DOWNLOAD 🡇 </button>
+      </div>
+      {% endif %}
+
+
+    </div>
+  </div>
+
+</div>
+      
+{% endblock %}

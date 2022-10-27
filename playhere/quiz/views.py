@@ -14,6 +14,8 @@ def profile1(request):
     for i in pobj:
         rank += i.score
 
+    request.session['rank'] = rank
+
     try:
         obj = pobj[0]
     except:
@@ -68,8 +70,8 @@ def ques(request,idd):
 
     if request.method == 'POST':
         try:
-            #ti = request.POST['time']
-            #print("time", ti)
+            ti = request.POST['tim']
+            print("time : ", ti)
             select = request.POST['o']
         except:
             select =''
@@ -109,16 +111,19 @@ def ques(request,idd):
 def result(request,slis):
     try:
         emoji = {
-            1:'https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g',
-            2:'https://media0.giphy.com/media/h4OGa0npayrJX2NRPT/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g',
-            3:'https://media0.giphy.com/media/kfS15Gnvf9UhkwafJn/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g',
-            4:'https://media2.giphy.com/media/j4l0mCdcTFRyY4Bc5s/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g',
-            5:'https://media0.giphy.com/media/USUIWSteF8DJoc5Snd/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
-            6:'https://media4.giphy.com/media/hp3dmEypS0FaoyzWLR/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
-            7:'https://media1.giphy.com/media/hVlZnRT6QW1DeYj6We/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
-            8:'https://media4.giphy.com/media/UQDSBzfyiBKvgFcSTw/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
-            9:'https://media2.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g',
-            10:'https://media3.giphy.com/media/lRXY41yFFi9RfNXyPN/giphy.gif?cid=ecf05e47mxr383ar6o6yxhzr5iaoa8j6iw17z3axmyc3dgau&rid=giphy.gif&ct=g',
+            0: [
+                'https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g',
+                'you need to practice more '],
+            1:['https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','you need to practice more '],
+            2:['https://media0.giphy.com/media/h4OGa0npayrJX2NRPT/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','ohh so sad'],
+            3:['https://media0.giphy.com/media/kfS15Gnvf9UhkwafJn/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g','not bad'],
+            4:['https://media2.giphy.com/media/j4l0mCdcTFRyY4Bc5s/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g','nice'],
+            5:['https://media0.giphy.com/media/USUIWSteF8DJoc5Snd/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','not bad'],
+            6:['https://media4.giphy.com/media/hp3dmEypS0FaoyzWLR/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','wow'],
+            7:['https://media1.giphy.com/media/hVlZnRT6QW1DeYj6We/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','suer'],
+            8:['https://media4.giphy.com/media/UQDSBzfyiBKvgFcSTw/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','good'],
+            9:['https://media2.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','sweet'],
+            10:['https://media3.giphy.com/media/lRXY41yFFi9RfNXyPN/giphy.gif?cid=ecf05e47mxr383ar6o6yxhzr5iaoa8j6iw17z3axmyc3dgau&rid=giphy.gif&ct=g','so, sweet'],
             }
         ucategory = request.session['category']
         uscore = slis
@@ -135,3 +140,10 @@ def result(request,slis):
         return render(request,'result.html',{'score':uscore,'emoji':emo})
     except:
          return redirect('/')
+
+
+
+
+def certificate(request):
+
+    return render(request,'certification.html',{'rank' : request.session['rank']})
