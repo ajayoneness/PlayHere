@@ -23,6 +23,7 @@ class cat(models.Model):
 
 class questions(models.Model):
     question = models.TextField(max_length=1000)
+    subquestion = models.TextField(blank=True, max_length=1000)
     option1 = models.TextField(max_length=500)
     option2 = models.TextField(max_length=500)
     option3 = models.TextField(max_length=500)

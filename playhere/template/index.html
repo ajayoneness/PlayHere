@@ -14,10 +14,15 @@
               {% if q_obj == '' %}
                 <h5 class="card-title txt">We are working on this coming soon.....</h5>
               {% else %}
-                <h5 class="card-title txt"><pre>{{q_obj.question}}</pre></h5><br>
+
+                {% if q_obj.subquestion != '' %}
+                <h5 class="card-title txt">{{q_obj.question}}</h5><h5 style="color:white; text-shadow:0px 0px 10px black;  padding:5px; background-color:rgba(0,0,0,.2); border-radius:5px; "><pre>{{q_obj.subquestion}}</pre></h5><br>
+                {% else %}
+                <h5 class="card-title txt">{{q_obj.question}}</h5><br>
+                {% endif %}
               {% endif %}
 
-              <div style="color: white; font-weight:bold; font-size : 20px;">
+              <div style="color: white; font-weight:bold; font-size : 20px; text-shadow: 0px 0px 10px black;">
                   <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="1"> <span>{{q_obj.option1}}</span><br>
                   <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="2"> <span>{{q_obj.option2}}</span><br>
                   <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="3"> <span>{{q_obj.option3}}</span><br>
