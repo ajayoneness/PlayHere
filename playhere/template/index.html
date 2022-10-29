@@ -1,15 +1,84 @@
 {% extends 'Home.html' %}
 
 {% block content %}
+<style>
+    .popup{
+        width: 90%;
+        height : 90%;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top:0;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(0.1);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        visibility: hidden;
+        transition: transform 0.4s, top 0.4s;
+    }
+
+    .openpopup{
+        visibility: visible;
+        top: 50%;
+        transform: translate(-50%,-50%) scale(1);
+
+    }
+
+
+
+    .popup img{
+        width: 100px;
+        margin: -50px;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .popup h1{
+        font-size: 38px;
+        font-weight: 500;
+        margin: 50px 0 10px;
+    }
+
+    .popup button{
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        padding: 10px 0px;
+        background: #6fd649;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+
+
+    }
+
+
+</style>
+
 
 <div class="container raj">
-        <h1 class="sn">{{count}}</h1>
+    <div class="row">
+        <div class="col">
+            <h5 class="sn">{{count}}</h5>
+        </div>
+        <div class="col">
+            <p style="position:relative; top: 40px; right:100px; color: blue; font-weight:bold; ">Topic : ( {{q_obj.category}} ) / {{q_obj.topic}}  </p><br>
+            <p style="color: red; position:relative; right:100px;font-weight:bold;" id="time"></p>
+        </div>
+
+    </div>
+
+
     <form method="post">
         {% csrf_token %}
       <div class="card indexcard" style= "background-image: linear-gradient(to right, rgba({{r1}},{{g1}},{{b1}},1), rgba({{r2}},{{g2}},{{b2}},1));" >
           <div class="card-body">
-            <input type='hidden' name='tim' id='time' value="5" >
-              <p style="font-weight:bold; font-size:15px; color:white; position:absolute; top:20px; ">Topic : ( {{q_obj.category}} ) / {{q_obj.topic}}  ( <span style="color: red;"></span> sec )</p>
+            <input type='hidden' name='tim' value="5" >
 
               {% if q_obj == '' %}
                 <h5 class="card-title txt">We are working on this coming soon.....</h5>
@@ -28,7 +97,17 @@
                   <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="3"> <span>{{q_obj.option3}}</span><br>
                   <input style="transform: scale(2.0); margin : 20px;" type="radio"  name="o" value="4"> <span>{{q_obj.option4}}</span><br>
               </div>
-              <input class="btn" style="background-color:orange; color:white; margin:20px;" type="submit" value="Next  ➤ ">
+
+              <div class='popup' id='popup'>
+                    <img id="ci" src='correct.png'>
+                    <h1 id="res">Correct Answer</h1>
+                    <p id="res_mess">Congratulation sir your answer is correct !!</p>
+                    <h5 id ="tt"></h5>
+                     <h5 id ="ca"></h5>
+                    <input class="btn" style="background-color:orange; color:white; margin:20px;" type="submit" value="Next  ➤ ">
+<!--                    <button type="submit" onclick="closepopup()">Next</button>-->
+              </div>
+
           </div>
         </div>
       </form>
@@ -36,11 +115,70 @@
 
 <script>
 
+
+<!--Time -->
     var tim=0;
     var countup = setInterval(function(){
         ++tim;
-        document.getElementById('time').innerHTML = tim;
+        document.getElementById('time').innerHTML ="Time = "+ tim + " sec";
     },1000);
+
+
+    let dic = {
+    '1' : "{{q_obj.option1}}",
+    '2' : "{{q_obj.option2}}",
+    '3' : "{{q_obj.option3}}",
+    '4' : "{{q_obj.option4}}",
+    };
+
+
+
+
+    let ans = {{q_obj.answer}};
+    let user_ans = document.querySelectorAll("input[name='o']");
+    let popup = document.getElementById('popup');
+
+
+    let findSelected = () => {
+    let selected = document.querySelector("input[name='o']:checked").value;
+<!--    console.log("user answer &ndash;&gt; "+selected)-->
+<!--    console.log("answer &#45;&#45; > "+ans)-->
+
+    if (Number(selected) == Number(ans)){
+        console.log("correct answer");
+        document.getElementById('ci').src = "https://e7.pngegg.com/pngimages/442/715/png-clipart-check-mark-computer-icons-icon-design-cheque-successful-angle-logo.png";
+        document.getElementById('res').innerHTML = "Correct !!"
+        document.getElementById('res_mess').innerHTML = "good Job ";
+        document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
+        document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
+        popup.classList.add('openpopup');
+
+    }
+    else{
+        console.log("Incorrect Answer")
+        document.getElementById('ci').src = "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png";
+        document.getElementById('res').innerHTML = "Sorry !!"
+        document.getElementById('res_mess').innerHTML = "Oh no.... "
+        document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
+
+        document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
+
+        popup.classList.add('openpopup');
+    }
+
+
+    }
+
+    user_ans.forEach(i => {
+        i.addEventListener("change", findSelected);
+    });
+
+findSelected();
+
+
+
+
+
 </script>
       
 {% endblock %}
