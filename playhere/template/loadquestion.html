@@ -1,0 +1,21 @@
+{% extends 'Home.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="box" style="margin-top : 100px;">
+        <h1>Load Data.</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="myfile">
+            <input type="submit" class="btn">
+        </form>
+
+        <h1>{{mes}}</h1>
+
+    </div>
+
+</div>
+      
+{% endblock %}

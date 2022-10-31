@@ -9,7 +9,10 @@ urlpatterns = [
     path("category/",views.cate, name ="category"),
     path('ques/<int:idd>',views.ques,name="question"),
     path('result/<int:slis>',views.result,name='result'),
-    path('certification/',views.certificate, name='certificate')
+    path('certification/',views.certificate, name='certificate'),
+    path('loaddata/',views.loaddata, name='loaddata')
+
 ]
 
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

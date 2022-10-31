@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import profile,cat,questions
 import random
+from django.core.files.storage import FileSystemStorage
 
 lis = []
 def profile1(request):
@@ -147,3 +148,32 @@ def result(request,slis):
 def certificate(request):
 
     return render(request,'certification.html',{'rank' : request.session['rank']})
+
+def loaddata(request):
+
+    #update some missing fields
+    # for i in range(1,11):
+    #     q= questions.objects.get(id=i)
+    #     q.category = 'coding'
+    #     q.topic  = "Python"
+    #     q.save()
+    #     print('done')
+
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs = FileSystemStorage()
+        filename = fs.save(myfile.name, myfile)
+        uploaded_file_url = fs.url(filename)
+        print(uploaded_file_url)
+        import pandas as pd
+        data = pd.read_excel(f"C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere{uploaded_file_url}")
+        for i in range(0,len(data)):
+            uploadquestion = questions(question = data['Question'][i],subquestion=data['Subquestion'][i],option1=data['option1'][i],option2=data['option2'][i],option3=data['option3'][i],option4=data['option4'][i],answer = data['answer'][i],category = data['category'][i])
+            uploadquestion.save()
+        uc="upload completed"
+        return render(request, 'loadquestion.html',{'mes':uc})
+
+
+    return render(request,'loadquestion.html')
+
+
