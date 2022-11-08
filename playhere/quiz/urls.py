@@ -10,7 +10,8 @@ urlpatterns = [
     path('ques/<int:idd>',views.ques,name="question"),
     path('result/<int:slis>',views.result,name='result'),
     path('certification/',views.certificate, name='certificate'),
-    path('loaddata/',views.loaddata, name='loaddata')
+    path('loaddata/',views.loaddata, name='loaddata'),
+    path('addmore/',views.AddMoreDetails, name='addmore'),
 
 ]
 

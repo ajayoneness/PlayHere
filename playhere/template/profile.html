@@ -1,6 +1,24 @@
 {% extends 'Home.html' %}
 
 {% block content %}
+
+<style>
+  .botn{
+    position : absolute;
+    color: black;
+    text-decoration:none;
+    padding : 5px ;
+    margin-left : 5px;
+    font-size : 30px;
+  }
+  .botn:hover{
+    transition: 3s;
+    transform: rotate(360deg);
+    color:red;
+
+  }
+
+</style>
       
 <div class="container raj">
     <section class="100vh" style="background-color: darkseagreen;">
@@ -8,11 +26,20 @@
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col col-lg-6 mb-4 mb-lg-0">
             <div class="mb-3" id=prof style="border-radius: .5rem;">
+
+              <a class="botn" href="{% url 'addmore'%}">☀</a>
               <div class="row g-0">
-                <div class="col-md-4 gradient-custom text-center text-white"
+                <div class="col-md-4 mt-5 gradient-custom text-center text-white"
                   style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+
+                  {% if aobj == "ajay" %}
                   <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
                     alt="Avatar" class="img-fluid my-3" style="width: 150px;" />
+                  {% else %}
+                  <img src="{{aobj.0.profile_photo.url}}"
+                    alt="Avatar" class="img-fluid my-3" style="width: 100px; height:100px;  border-radius:50%; " />
+                  {% endif %}
+
                   <h5>{{user.first_name}} {{ user.last_name }} </h5>
                   <p>{{user.username}}</p>
                   <i class="far fa-edit mb-5"></i>

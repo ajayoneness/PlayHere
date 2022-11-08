@@ -389,7 +389,7 @@ background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 1
 .boxa{
     box-shadow: 0px 0px 20px rgba(0,200,200,1);
     animation-name: radha;
-    animation-duration:3s;
+    animation-duration:4s;
     animation-iteration-count: infinite;
 }
 

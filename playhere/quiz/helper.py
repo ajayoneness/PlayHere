@@ -5,7 +5,7 @@ from django.templatetags.static import static
 
 
 class Data():
-    def __init__(self,name,date,course,collage='CIST',outimg=static('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/aj.png')):
+    def __init__(self,name,date,course,collage='CIST',outimg='C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/aj.png'):
         self.name=name
         self.date=date
         self.course=course

@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
-from .models import profile,cat,questions
+from .models import profile,cat,questions,addmore
 import random
 from django.core.files.storage import FileSystemStorage
 from .helper import Data
 from datetime import datetime
+
 
 lis = []
 tlis =[]
@@ -38,10 +39,23 @@ def profile1(request):
 
     request.session['mostplay'] = mosplay
 
-    return render(request,'profile.html',{'pobj':obj,"pobjcount":pobj.count(),'mostplay':mosplay,'rank':rank})
+    try:
+        aobj = addmore.objects.filter(user=request.user).order_by("-id")
+        print(aobj[0].profile_picture)
+    except:
+        aobj ="ajay"
+
+    return render(request,'profile.html',{'pobj':obj,"pobjcount":pobj.count(),'mostplay':mosplay,'rank':round(rank,2),'aobj':aobj})
 
 
 def cate(request):
+
+    try:
+        aobj = addmore.objects.filter(user=request.user).order_by("-id")
+        print(aobj[0].profile_picture)
+    except:
+        aobj ="ajay"
+
     lis.clear()
     tlis.clear()
     countt[0] == 0
@@ -109,7 +123,14 @@ def ques(request,idd):
 
         if select != '':
             if int(total_cat[q_number].answer) == int(select):
-                tlis.append(int(ti))
+                try:
+                    if int(ti)<100:
+                        tlis.append(int(ti))
+                    else:
+                        tlis.append(99)
+                except:
+                    tlis.append(0)
+
                 lis.append(1)
                 print('correct answer')
                 if len(lis) >= 10:
@@ -126,7 +147,13 @@ def ques(request,idd):
                 return redirect(f'/quiz/ques/{random.randint(0,count)}')
 
             else:
-                tlis.append(int(ti))
+                try:
+                    if int(ti) < 100:
+                        tlis.append(int(ti))
+                    else:
+                        tlis.append(99)
+                except:
+                    tlis.append(0)
                 lis.append(0)
                 print('incorrect Answer')
                 if len(lis) >= 10:
@@ -136,7 +163,7 @@ def ques(request,idd):
                     sumlis = sum(lis)
                     print(sumlis)
                     lis.clear()
-                    print(uniquekey[sumlis])
+                    # print(uniquekey[sumlis])
                     return redirect(f'/quiz/result/{sumlis}')
 
                 return redirect(f'/quiz/ques/{random.randint(0, count)}')
@@ -173,11 +200,13 @@ def result(request,slis):
         if request.user.is_authenticated and countt[0] == 0:
             countt[0]=1
             uname = request.user.username
-            save_user_data = profile(p_username=uname, category=ucategory, score=rank, timetkaen=utimetaken )
+            #make score field to float
+            save_user_data = profile(p_username=uname, category=ucategory, score=round(rank,2), timetkaen=utimetaken )
             save_user_data.save()
             return render(request,'result.html',{'score':uscore,'emoji':emo,'timetaken':utimetaken,'rank':rank})
         else:
             countt[0]=0
+            # return render(request, 'result.html',{'score': uscore, 'emoji': emo, 'timetaken': utimetaken, 'rank': rank})
             return redirect('/')
 
 
@@ -206,6 +235,7 @@ def loaddata(request):
         filename = fs.save(myfile.name, myfile)
         #uploaded_file_url = fs.url(filename)
         path = fs.path(filename)
+        print("i am a path : "+path)
 
         import pandas as pd
         data = pd.read_excel(f"{path}")
@@ -227,18 +257,51 @@ def loaddata(request):
 
 
 def certificate(request):
+
     obj = Data(f'{request.user.first_name} {request.user.last_name}',datetime.today(),request.session['mostplay'])
+    print(obj)
+    #obj.imagesize(150, 150,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playhere.png', '/media/playhere/playherelogo.png')
+    t = f'''" is hereby awardes this certificate of achievement for the successfully \n           getting 10,000 rank on 'codeaj.pythonanywhere.com' \n                          by playing {obj.course} on {obj.date} "'''
+    obj.imgCreate('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/bg.jpg', 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/mainlogo.png', 50, obj.name, 34, 177, 76, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 320, 200, 250,70)
+    obj.AddText(20, t, 225, 225, 225,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/textfont.ttf', 150, 280)
+    obj.AddText(15, '    Ajay Pandit \n  CTO of codeaj', 225, 225, 225, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 95, 493)
+    obj.AddText(15, 'Md Raza subhani \n  CTO of codeaj', 225, 225, 225, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 680, 500)
+    obj.AddImage('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playherelogo.png', 360, 400)
+    #obj.AddImage('cistlogo.jpg',480,450)
+    print(f"{obj.outimg} created !!")
 
-    obj.imagesize(150, 150,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playhere.png', 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playherelogo.png')
-    #t = f'''" is hereby awardes this certificate of achievement for the successfully \n           getting 10,000 rank on 'codeaj.pythonanywhere.com' \n                          by playing {obj.course} on {obj.date} "'''
-    # obj.imgCreate(static('playhere/bg.jpg'), static('playhere/mainlogo.png'), 50, obj.name, 34, 177, 76, static('namefont.ttf'), 320, 200, 250,
-    #               70)
-    # obj.AddText(20, t, 225, 225, 225, static('textfont.ttf'), 150, 280)
-    # obj.AddText(15, '    Ajay Pandit \n  CTO of codeaj', 225, 225, 225, static('namefont.ttf'), 95, 493)
-    # obj.AddText(15, 'Md Raza subhani \n  CTO of codeaj', 225, 225, 225, static('namefont.ttf'), 680, 500)
-    # obj.AddImage(static('playhere/playherelogo.png'), 360, 400)
-    # # obj.AddImage('cistlogo.jpg',480,450)
-    # print(f"{obj.outimg} created !!")
+    return render(request,'certification.html',{'rank' : request.session['rank'],'imgurl':obj.outimg})
 
-    return render(request,'certification.html',{'rank' : request.session['rank']})
 
+def AddMoreDetails(request):
+    try:
+        obj = addmore.objects.filter(user=request.user).order_by("-id")
+        da = obj[0].date_of_birth
+        #da = str(da).split('-')
+        #da = f'{da[2]}-{da[0]}-{da[1]}'
+        print("date : ",da)
+    except:
+        obj = "codeaj"
+        da = ''
+    try:
+        if request.method == 'POST':
+            # uname = request.user.username
+            try:
+                pimg = request.FILES['pimg']
+            except:
+                pimg = obj[0].profile_photo
+
+            mobno = request.POST['mobno']
+            dob = request.POST['dob']
+            zip = request.POST['zipcode']
+            address = request.POST['address']
+            #site = request.POST['site']
+            bio = request.POST['bio']
+            print(pimg,mobno,dob,zip,address,bio)
+            b=addmore(user=request.user,profile_photo=pimg, mobile_number=int(mobno), date_of_birth=dob, zip_code=zip, address=address, bio=bio)
+            b.save()
+            return redirect('/quiz/')
+    except:
+        pass
+
+    return render(request,'addmore.html',{'obj':obj,'date':str(da)})

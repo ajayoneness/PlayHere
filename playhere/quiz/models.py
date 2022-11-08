@@ -1,5 +1,6 @@
 from django.db import models
 from django_userforeignkey.models.fields import UserForeignKey
+from django.contrib.auth.models import User
 
 
 
@@ -10,8 +11,19 @@ class profile(models.Model):
     p_username = models.TextField()
     datetime = models.DateTimeField(auto_now=True)
     category = models.TextField()
-    score = models.IntegerField()
+    score = models.FloatField()
     timetkaen = models.IntegerField(blank=True)
+
+
+class addmore(models.Model):
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL,blank=True)
+    profile_photo = models.ImageField(upload_to='profile', null=True,blank=True)
+    mobile_number = models.PositiveBigIntegerField(null=True,blank=True)
+    date_of_birth = models.DateField(auto_now_add=False, auto_now=False,blank=True,null= True)
+    zip_code = models.IntegerField(null=True,blank=True)
+    address = models.CharField(max_length=225, null=True,blank=True)
+    #website = models.URLField(max_length=100, null=True,blank=True)
+    bio = models.CharField(max_length=225, null=True,blank=True)
 
 
 

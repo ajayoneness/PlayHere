@@ -1,0 +1,117 @@
+{% extends 'Home.html' %}
+
+{% block content %}
+      
+      <style>
+          #display-image{
+              width: 200px;
+              height: 200px;
+              border: 2px solid black;
+              border-radius: 50%;
+              background-position: center;
+              background-size: cover;
+            }
+          input{
+              position: relative;
+              padding: 5px;
+              padding-left: 15px;
+              position: relative;
+              margin: 10px;
+              height: 40px;
+              width: 200px;
+              border:none;
+              border-radius: 30px;
+              color:black;
+              box-shadow: 0px 0px 10px blue;
+              background-color:white;
+              
+          }
+          
+          .btn{
+              background-color: blueviolet;
+              color: white;
+          }
+          
+          .btn:hover{
+              color: white;
+              transition: 1s;
+              box-shadow: 0px 0px 20px black;
+          }
+          .card2{
+          margin-top : 100px;
+          }
+      
+      </style>
+    
+      
+    <div class="container mt-5">
+      <div class="card  card2">
+          <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+          <div class="row p-5">
+
+              {% if obj == "codeaj" %}
+              <div class="col">
+                    <div id="display-image"></div>
+              </div>
+              <div class="col">
+                  <input type="file" name="pimg" id="image-input" accept="image/jpeg, image/png, image/jpg">
+              </div>
+
+              <div class="row" style="padding: 20px;">
+                    <input type="number" name="mobno" placeholder="Mobile no." value="" /><br>
+                    <input type="date" name="dob" placeholder="Date of Birth" value="" /><br>
+                    <input type="number" name="zipcode" placeholder="Zip Code" value="" /><br>
+                    <input type="text" name="address" placeholder="Address" value="" /><br>
+                    <input type="url" name="site" placeholder="Website" value="" /><br>
+                    <input type="text" name="bio" placeholder="Bio" value="" /><br>
+
+                    <input type="submit" value="Update Profile" class="btn"  />
+              </div>
+              {% else %}
+              <div class="col">
+                    <div id="display-image" style="background-image:url('{{obj.0.profile_photo.url}}');"></div>
+              </div>
+
+              <div class="col">
+                  <input type="file" value="{{obj.0.profile_photo}}"  name="pimg" id="image-input" accept="image/jpeg, image/png, image/jpg">
+              </div>
+
+
+              <div class="row" style="padding: 20px;">
+                    <input type="number" value="{{obj.0.mobile_number}}" name="mobno" placeholder="Mobile no." /><br>
+                    <input type="date"  name="dob" value="{{date}}"  /><br>
+                    <input type="number" value="{{obj.0.zip_code}}" name="zipcode" placeholder="Zip Code" /><br>
+                    <input type="text" name="address" placeholder="Address" value="{{obj.0.address}}" /><br>
+<!--                    <input type="url" name="site" placeholder="Website" value="{{obj.0.website}}" /><br>-->
+                    <input type="text" name="bio" placeholder="Bio" value="{{obj.0.bio}}" /><br>
+
+                    <input type="submit" value="Update Profile" class="btn"  />
+              </div>
+
+              {% endif %}
+
+          
+          </div>
+          </form>
+              
+        </div>
+      
+    </div>
+        
+      
+    <script>
+        const image_input = document.querySelector("#image-input");
+        image_input.addEventListener("change", function() {
+          const reader = new FileReader();
+          reader.addEventListener("load", () => {
+            const uploaded_image = reader.result;
+            document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+          });
+          reader.readAsDataURL(this.files[0]);
+        });
+        
+      
+    </script>
+           
+{% endblock %}
