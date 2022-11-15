@@ -11,9 +11,9 @@ from datetime import datetime
 
 # lis = []
 # tlis =[]
-countt =[0]
+#countt =[0]
 def profile1(request):
-    countt[0] == 0
+    #countt[0] = 0
     count = 0
     # request.session['lis']=0
     # request.session['tlis']=0
@@ -69,7 +69,7 @@ def cate(request):
 
     # lis = []
     # tlis = []
-    countt[0] = 0
+    #countt[0] = 0
     catobj = cat.objects.all()
 
     if request.method == 'POST':
@@ -151,6 +151,8 @@ def ques(request,idd):
 
 
                 print('correct answer')
+
+
                 if request.session['count'] >= 10:
                     request.session['ttime'] = request.session['tlis']
                     print(request.session['tlis'])
@@ -220,21 +222,21 @@ def result(request,slis):
         utimetaken = request.session['ttime']
         rank = ((uscore*100)-(utimetaken))/100
 
-        if request.user.is_authenticated and countt[0] == 0:
-            countt[0]=1
+        if request.user.is_authenticated and request.session['countt'] == 0:
+            request.session['countt'] = 1
             uname = request.user.username
             #make score field to float
             save_user_data = profile(p_username=uname, category=ucategory, score=round(rank,2), timetkaen=utimetaken )
             save_user_data.save()
             return render(request,'result.html',{'score':uscore,'emoji':emo,'timetaken':utimetaken,'rank':rank})
         else:
-            countt[0]=0
+            #request.session['countt'] = 0
             # return render(request, 'result.html',{'score': uscore, 'emoji': emo, 'timetaken': utimetaken, 'rank': rank})
             return redirect('/')
 
 
     except:
-        countt[0] = 0
+        #request.session['countt'] = 0
         return redirect('/')
 
 
