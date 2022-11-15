@@ -58,6 +58,11 @@ def profile1(request):
 
 
 def cate(request):
+    request.session['lis'] = 0
+    request.session['tlis'] = 0
+    request.session['count'] = 1
+    request.session['countt'] = 0
+
     print("cat list : ",request.session['lis'])
     #request.session['lis'] = request.session['lis']+1
 
@@ -229,6 +234,10 @@ def result(request,slis):
             save_user_data = profile(p_username=uname, category=ucategory, score=round(rank,2), timetkaen=utimetaken )
             save_user_data.save()
             return render(request,'result.html',{'score':uscore,'emoji':emo,'timetaken':utimetaken,'rank':rank})
+
+        elif request.session['countt'] == 0:
+            request.session['countt'] = 1
+            return render(request, 'result.html',{'score': uscore, 'emoji': emo, 'timetaken': utimetaken, 'rank': rank})
         else:
             #request.session['countt'] = 0
             # return render(request, 'result.html',{'score': uscore, 'emoji': emo, 'timetaken': utimetaken, 'rank': rank})
