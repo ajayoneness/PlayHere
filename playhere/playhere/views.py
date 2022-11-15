@@ -4,6 +4,9 @@ from quiz.models import addmore
 from django.contrib.auth.models import User,auth
 
 def main(request):
+    request.session['lis'] = 0
+    request.session['tlis'] = 0
+    request.session['count'] = 1
     if request.method == 'POST':
         uname = request.POST['user_name']
         password = request.POST['password']

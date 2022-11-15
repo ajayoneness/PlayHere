@@ -6,14 +6,23 @@ from .helper import Data
 from datetime import datetime
 
 
-lis = []
-tlis =[]
+
+
+
+# lis = []
+# tlis =[]
 countt =[0]
 def profile1(request):
     countt[0] == 0
-    count =0
-    lis.clear()
-    tlis.clear()
+    count = 0
+    request.session['lis']=0
+    request.session['tlis']=0
+    request.session['count']=0
+
+    print(type(request.session['lis']))
+    print(request.session['lis'])
+    # lis.clear()
+    # tlis.clear()
     rank = 0
     pobj = profile.objects.filter(p_username=request.user.username).order_by("-id")
     code = profile.objects.filter(category = 'coding' , p_username=request.user.username).count()
@@ -49,6 +58,8 @@ def profile1(request):
 
 
 def cate(request):
+    print(request.session['lis'])
+    request.session['lis'] = request.session['lis']+1
 
     try:
         aobj = addmore.objects.filter(user=request.user).order_by("-id")
@@ -56,9 +67,9 @@ def cate(request):
     except:
         aobj ="ajay"
 
-    lis.clear()
-    tlis.clear()
-    countt[0] == 0
+    # lis = []
+    # tlis = []
+    countt[0] = 0
     catobj = cat.objects.all()
 
     if request.method == 'POST':
@@ -79,6 +90,8 @@ def cate(request):
 
 
 def ques(request,idd):
+    #request.session['count'] +=1
+    print('count session : ', request.session['count'])
     countt =0
     R1=random.randint(20,200)
     R2 = random.randint(20,200)
@@ -125,52 +138,56 @@ def ques(request,idd):
             if int(total_cat[q_number].answer) == int(select):
                 try:
                     if int(ti)<100:
-                        tlis.append(int(ti))
+                        request.session['tlis'] +=int(ti)
+                        #request.session['tlis'].append(int(ti))
                     else:
-                        tlis.append(99)
+                        request.session['tlis'] += 99
                 except:
-                    tlis.append(0)
+                    request.session['tlis'] += "Error at line no 138"
 
-                lis.append(1)
+                request.session['lis'] += 1
                 print('correct answer')
-                if len(lis) >= 10:
-                    request.session['ttime'] = sum(tlis)
-                    print(tlis)
+                if request.session['count'] >= 10:
+                    request.session['ttime'] = request.session['tlis']
+                    print(request.session['tlis'])
                     print(request.session['ttime'])
-                    sumlis = sum(lis)
+                    #-------------------------------
+                    sumlis = request.session['lis']
                     print(sumlis)
-                    lis.clear()
-                    tlis.clear()
+                    request.session['lis'] = 0
+                    request.session['tlis'] = 0
                     print(uniquekey[sumlis])
                     return redirect(f'/quiz/result/{sumlis}')
 
+                request.session['count'] += 1
                 return redirect(f'/quiz/ques/{random.randint(0,count)}')
 
             else:
                 try:
                     if int(ti) < 100:
-                        tlis.append(int(ti))
+                        request.session['tlis'] += (int(ti))
                     else:
-                        tlis.append(99)
+                        request.session['tlis'] += 99
                 except:
-                    tlis.append(0)
-                lis.append(0)
+                    request.session['tlis'] += 0
+
+                request.session['lis'] += 0
                 print('incorrect Answer')
-                if len(lis) >= 10:
-                    request.session['ttime'] = sum(tlis)
-                    print(tlis)
-                    print(request.session['ttime'])
-                    sumlis = sum(lis)
-                    print(sumlis)
-                    lis.clear()
+                if request.session['count'] >= 10:
+                    request.session['ttime'] = request.session['tlis']
+                    print(request.session['tlis'])
+                    print("tlis session : ",request.session['ttime'])
+                    sumlis = request.session['lis']
+                    print("lis session : ",sumlis)
+                    request.session['lis'] = 0
                     # print(uniquekey[sumlis])
                     return redirect(f'/quiz/result/{sumlis}')
-
+                request.session['count'] += 1
                 return redirect(f'/quiz/ques/{random.randint(0, count)}')
         else :
             pass
-
-    dis = {'r1': R1, 'r2': R2, 'g1': G1, 'g2': G2, 'b1': B1, 'b2': B2, 'q_obj': qn,'count':len(lis)+1}
+    print('end point of count session : ',request.session['count'])
+    dis = {'r1': R1, 'r2': R2, 'g1': G1, 'g2': G2, 'b1': B1, 'b2': B2, 'q_obj': qn,'count':request.session['count']}
 
     return render(request,'index.html',dis)
 

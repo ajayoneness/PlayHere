@@ -1,0 +1,267 @@
+{% extends 'Home.html' %}
+
+{% block content %}
+<style>
+    .popup{
+        width: 90%;
+        height : 90%;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top:0;
+        left: 50%;
+        transform: translate(-50%,-50%) scale(0.1);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        visibility: hidden;
+        transition: transform 0.4s, top 0.4s;
+    }
+
+    .openpopup{
+        visibility: visible;
+        top: 50%;
+        transform: translate(-50%,-50%) scale(1);
+
+    }
+
+
+
+    .popup img{
+        width: 100px;
+        margin: -50px;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .popup h1{
+        font-size: 38px;
+        font-weight: 500;
+        margin: 50px 0 10px;
+    }
+
+    .popup button{
+        width: 100%;
+        margin-top: 50px;
+        margin-bottom: 10px;
+        padding: 10px 0px;
+        background: #6fd649;
+        color: #fff;
+        border: 0;
+        outline: none;
+        font-size: 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+
+
+    }
+    div.scrollmenu {
+      overflow: auto;
+      white-space: nowrap;
+    }
+
+    div.scrollmenu .co {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+    }
+
+    .sn{
+        position: absolute;
+        top:-25px;
+        left:8px;
+        }
+
+    .co{
+        background-color: rgba(1,1,1,0.5);
+        color : black;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(1,1,1,0.5);
+    }
+
+</style>
+
+
+<div class="container" style="position:relative; top:50px;">
+    <div class="scrollmenu">
+
+        <div class="co" style="width: 150px; height: 150px;  margin:20px;">
+            <div class=pro>
+                <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g" width=30px;>
+
+                <b><pre>username</pre></b>
+                <b>5.7 out of 10</b>
+                <p>time : 30s</p>
+            </div>
+
+        </div>
+
+
+        <div class="co" style="width: 150px; height: 150px;  margin:20px;">
+            <div class=pro>
+                <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g" width=30px;>
+
+                <b><pre>username</pre></b>
+                <b>5.7 out of 10</b>
+                <p>time : 30s</p>
+            </div>
+
+        </div>
+
+        <div class="co" style="width: 150px; height: 150px;  margin:20px;">
+            <div class=pro>
+                <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g" width=30px;>
+                <b><pre>username</pre></b>
+                <b>5.7 out of 10</b>
+                <p>time : 30s</p>
+            </div>
+
+        </div>
+
+        <div class="co" style="width: 150px; height: 150px;  margin:20px;">
+            <div class=pro>
+                <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g" width=30px;>
+                <b><pre>username</pre></b>
+                <b>5.7 out of 10</b>
+                <p>time : 30s</p>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="container raj">
+    <div class="row">
+        <div class="col">
+            <h5 class="sn">{{count}}</h5>
+        </div>
+        <div class="col">
+            <p style="position:relative; top: 40px; right:100px; color: blue; font-weight:bold; ">Topic : ( {{q_obj.category}} ) / {{q_obj.topic}}  </p><br>
+            <p style="color: red; position:relative; right:100px;font-weight:bold;" id="time"></p>
+        </div>
+    </div>
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <input type="hidden" id="time_taken" name="sec" />
+
+      <div class="card indexcard" style= "background-image: linear-gradient(to right, rgba({{r1}},{{g1}},{{b1}},1), rgba({{r2}},{{g2}},{{b2}},1));" >
+          <div class="card-body">
+
+              {% if q_obj == '' %}
+                <h5 class="card-title txt">We are working on this coming soon.....</h5>
+              {% else %}
+
+                {% if q_obj.subquestion != '' %}
+                <h5 class="card-title txt">{{q_obj.question}}</h5><h5 style="color:white; text-shadow:0px 0px 10px black;  padding:5px; background-color:rgba(0,0,0,.2); border-radius:5px; "><pre>{{q_obj.subquestion}}</pre></h5><br>
+                {% else %}
+                <h5 class="card-title txt">{{q_obj.question}}</h5><br>
+                {% endif %}
+              {% endif %}
+
+              <div style="color: white; font-weight:bold; font-size : 20px; text-shadow: 0px 0px 10px black;">
+                  <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="1"> <span>{{q_obj.option1}}</span><br>
+                  <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="2"> <span>{{q_obj.option2}}</span><br>
+                  <input style="transform: scale(2.0);  margin : 20px;" type="radio"  name="o" value="3"> <span>{{q_obj.option3}}</span><br>
+                  <input style="transform: scale(2.0); margin : 20px;" type="radio"  name="o" value="4"> <span>{{q_obj.option4}}</span><br>
+              </div>
+
+              <div class='popup' id='popup'>
+                    <img id="ci" src='correct.png'>
+                    <h1 id="res">Correct Answer</h1>
+                    <p id="res_mess">Congratulation sir your answer is correct !!</p>
+                    <h5 id ="tt"></h5>
+                     <h5 id ="ca"></h5>
+                    <input class="btn" style="background-color:orange; color:white; margin:20px;" type="submit" value="Next  ➤ ">
+<!--                    <button type="submit" onclick="closepopup()">Next</button>-->
+              </div>
+
+          </div>
+        </div>
+      </form>
+</div>
+
+<script>
+
+
+<!--Time -->
+    var tim=0;
+    var countup = setInterval(function(){
+        ++tim;
+        document.getElementById('time').innerHTML ="Time = "+ tim + " sec";
+    },1000);
+
+
+    let dic = {
+    '1' : "{{q_obj.option1}}",
+    '2' : "{{q_obj.option2}}",
+    '3' : "{{q_obj.option3}}",
+    '4' : "{{q_obj.option4}}",
+    };
+
+
+
+
+    let ans = {{q_obj.answer}};
+    let user_ans = document.querySelectorAll("input[name='o']");
+    let popup = document.getElementById('popup');
+
+
+    let findSelected = () => {
+    let selected = document.querySelector("input[name='o']:checked").value;
+<!--    console.log("user answer &ndash;&gt; "+selected)-->
+<!--    console.log("answer &#45;&#45; > "+ans)-->
+
+    if (Number(selected) == Number(ans)){
+        console.log("correct answer");
+        document.getElementById('ci').src = "https://e7.pngegg.com/pngimages/442/715/png-clipart-check-mark-computer-icons-icon-design-cheque-successful-angle-logo.png";
+        document.getElementById('res').innerHTML = "Correct !!"
+        document.getElementById('res_mess').innerHTML = "good Job ";
+        document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
+        document.getElementById('time_taken').value = tim;
+        document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
+        popup.classList.add('openpopup');
+
+    }
+    else{
+        console.log("Incorrect Answer")
+        document.getElementById('ci').src = "https://www.shareicon.net/data/256x256/2015/09/15/101562_incorrect_512x512.png";
+        document.getElementById('res').innerHTML = "Sorry !!"
+        document.getElementById('res_mess').innerHTML = "Oh no.... "
+        document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
+        document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
+        document.getElementById('time_taken').value = 0;
+
+        popup.classList.add('openpopup');
+    }
+
+
+    }
+
+    user_ans.forEach(i => {
+        i.addEventListener("change", findSelected);
+    });
+
+findSelected();
+
+
+
+
+
+</script>
+      
+{% endblock %}
