@@ -1,0 +1,40 @@
+<!--enoji Link : https://giphy.com/explore/emoji-sticker-->
+{% extends 'Home.html' %}
+
+{% block content %}
+    
+<!--  main category    -->
+<h1 class=" container sn mt-5">Feedback </h1>
+
+ <div class="container mt-5">
+      <form method="post">
+          {% csrf_token %}
+          <textarea placeholder="your Feedback" class="p-3" style="width:400px; height:100px; border-radius:8px;" name="userproblem"></textarea><br><br>
+          <input class="btn btn-success"  type="submit">
+      </form>
+    </div>
+
+
+
+<div class="container raj pt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    {% for i in fb %}
+      <div class="col">
+        <div class="card card2">
+          <div class="card-body cb">
+            <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
+                    alt="Avatar" class="img-fluid my-3" style="width: 50px;" />
+            <span class="card-title title" >{{i.uname}}</span>
+              <p><em><u>{{i.date}}</u></em></p>
+            <p class="card-text"><em>" {{i.mes}} "</em></p>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+
+  </div>
+</div>
+
+
+{% endblock %}

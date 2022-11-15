@@ -11,6 +11,7 @@ urlpatterns = [
     path('account/',include('account.urls')),
     path('quiz/',include('quiz.urls')),
     path('ch/',include('challenge.urls')),
+    path('feedback/',include('feedback.urls'))
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

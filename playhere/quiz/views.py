@@ -15,9 +15,9 @@ countt =[0]
 def profile1(request):
     countt[0] == 0
     count = 0
-    request.session['lis']=0
-    request.session['tlis']=0
-    request.session['count']=0
+    # request.session['lis']=0
+    # request.session['tlis']=0
+    # request.session['count']=0
 
     print(type(request.session['lis']))
     print(request.session['lis'])
@@ -58,8 +58,8 @@ def profile1(request):
 
 
 def cate(request):
-    print(request.session['lis'])
-    request.session['lis'] = request.session['lis']+1
+    print("cat list : ",request.session['lis'])
+    #request.session['lis'] = request.session['lis']+1
 
     try:
         aobj = addmore.objects.filter(user=request.user).order_by("-id")
@@ -90,7 +90,7 @@ def cate(request):
 
 
 def ques(request,idd):
-    #request.session['count'] +=1
+    print("list : ",request.session['lis'])
     print('count session : ', request.session['count'])
     countt =0
     R1=random.randint(20,200)
@@ -135,6 +135,7 @@ def ques(request,idd):
 
 
         if select != '':
+
             if int(total_cat[q_number].answer) == int(select):
                 try:
                     if int(ti)<100:
@@ -146,6 +147,9 @@ def ques(request,idd):
                     request.session['tlis'] += "Error at line no 138"
 
                 request.session['lis'] += 1
+                print('mark count : ', request.session['lis'])
+
+
                 print('correct answer')
                 if request.session['count'] >= 10:
                     request.session['ttime'] = request.session['tlis']
@@ -160,6 +164,7 @@ def ques(request,idd):
                     return redirect(f'/quiz/result/{sumlis}')
 
                 request.session['count'] += 1
+
                 return redirect(f'/quiz/ques/{random.randint(0,count)}')
 
             else:
@@ -172,6 +177,7 @@ def ques(request,idd):
                     request.session['tlis'] += 0
 
                 request.session['lis'] += 0
+                print('mark count : ',request.session['lis'])
                 print('incorrect Answer')
                 if request.session['count'] >= 10:
                     request.session['ttime'] = request.session['tlis']
