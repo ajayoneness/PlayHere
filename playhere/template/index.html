@@ -154,6 +154,7 @@
         document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
         document.getElementById('time_taken').value = tim;
         document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
+        document.getElementById('ca').style.color = "green";
         popup.classList.add('openpopup');
 
     }
@@ -164,6 +165,7 @@
         document.getElementById('res_mess').innerHTML = "Oh no.... "
         document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
         document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
+        document.getElementById('ca').style.color = "red";
         document.getElementById('time_taken').value = 0;
 
         popup.classList.add('openpopup');
