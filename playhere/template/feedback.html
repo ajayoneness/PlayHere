@@ -2,66 +2,37 @@
 {% extends 'Home.html' %}
 
 {% block content %}
+
 <style>
     .car{
-    background-color : black;
+    background-color : white;
     padding : 20px;
     border-radius : 8px;
+    color:black;
     border: none ;
-    box-shadow: 0px 0px 10px black,0px 0px 20px black;
+    /*box-shadow: 0px 0px 10px b,0px 0px 20px black;*/
     }
     .car:hover{
     transition: 0.5s;
-    box-shadow: 0px 0px 15px black,0px 0px 30px black;
+    box-shadow: 0px 0px 5px black;
+    }
+    .cb{
+        color : black;
     }
 </style>
 
-    
+
+
 <!--  main category    -->
 <h1 class=" container sn mt-5">Feedback </h1>
 
  <div class="container mt-5">
-<!--      <form method="post">-->
-<!--          {% csrf_token %}-->
-<!--          <textarea placeholder="your Feedback" class="p-3" style="width:400px; height:100px; border-radius:8px;" name="userproblem"></textarea><br><br>-->
-<!--          <input class="btn btn-success"  type="submit">-->
-<!--      </form>-->
-
-
-     <div class="container5">
-          <div class="post">
-            <div class="text">Thanks for rating us!</div>
-            <div class="edit">EDIT</div>
-          </div>
-          <div class="star-widget">
-            <input type="radio" name="rate" id="rate-5">
-            <label for="rate-5" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="rate-4">
-            <label for="rate-4" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="rate-3">
-            <label for="rate-3" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="rate-2">
-            <label for="rate-2" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="rate-1">
-            <label for="rate-1" class="fas fa-star"></label>
-            <form method="post">
-                {% csrf_token %}
-              <header></header>
-              <div class="textarea">
-                <textarea cols="30" placeholder="Describe your experience.." name="userproblem"></textarea>
-              </div>
-              <div class="btn">
-                <button type="submit">Post</button>
-              </div>
-            </form>
-          </div>
-     </div>
-
-
-
-
-
- </div>
+      <form method="post">
+          {% csrf_token %}
+          <textarea placeholder="your Feedback" class="p-3" style="width:400px; height:100px; border-radius:8px;" name="userproblem"></textarea><br><br>
+          <input class="btn btn-success"  type="submit">
+      </form>
+    </div>
 
 
 
@@ -70,27 +41,13 @@
 
     {% for i in fb %}
       <div class="col">
-        <div class="car" >
+        <div class="car">
           <div class="card-body cb">
             <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
                     alt="Avatar" class="img-fluid my-3" style="width: 50px;" />
             <span class="card-title title" >{{i.uname}}</span>
               <p><em><u>{{i.date}}</u></em></p>
             <p class="card-text"><em>" {{i.mes}} "</em></p>
-              <br>
-<!--              <div class="star-widget">-->
-<!--                <input type="radio" name="rate" id="rate-5">-->
-<!--                <label for="rate-5" class="fas fa-star"></label>-->
-<!--                <input type="radio" name="rate" id="rate-4">-->
-<!--                <label for="rate-4" class="fas fa-star"></label>-->
-<!--                <input type="radio" name="rate" id="rate-3">-->
-<!--                <label for="rate-3" class="fas fa-star"></label>-->
-<!--                <input type="radio" name="rate" id="rate-2">-->
-<!--                <label for="rate-2" class="fas fa-star"></label>-->
-<!--                <input type="radio" name="rate" id="rate-1">-->
-<!--                <label for="rate-1" class="fas fa-star"></label>-->
-<!--              </div>-->
-
           </div>
         </div>
       </div>

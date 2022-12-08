@@ -19,7 +19,7 @@
   }
 
 </style>
-      
+
 <div class="container raj">
     <section class="100vh" style="background-color: darkseagreen;">
       <div class="container py-5 h-100">
@@ -46,11 +46,21 @@
                 </div>
                 <div class="col-md-8">
                   <div class="card-body p-4">
-                    <h4>Score </h4>
+                    <div class="row pt-1">
+                      <div class="col-6 mb-3">
+                        <h1>Score</h1>
+                      </div>
+                      <div class="col-6 mb-3" >
+
+                        <button onclick="location.href = '/quiz/category'" style="postion:relative; top:5px; left:-30px;" class="btt">Let's Play ➟ </button>
+
+
+                      </div>
+                    </div>
                     <hr class="mt-0 mb-4">
                     <div class="row pt-1">
                       <div class="col-6 mb-3">
-                        <h6>Rank</h6>
+                        <h6>Points</h6>
                         <p style="font-weight: bold; font-size: 25px">{{rank}}<p>
                       </div>
                       <div class="col-6 mb-3">
@@ -80,8 +90,8 @@
     </section>
 
   <p style="text-align : center; font-weight : bold;  ">Get <a style="text-decoration : none; font-size : 20px;" href="{% url 'certificate' %}">Certificate</a></p>
-    
-    
-</div>  
+
+
+</div>
 
 {% endblock %}

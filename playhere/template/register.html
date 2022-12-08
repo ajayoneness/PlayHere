@@ -1,8 +1,6 @@
 {% extends 'Home.html' %}
-      
+
 {% block content %}
-
-
 <!--   rEgister Form-->
 
   <div class="container raj" id="register">
@@ -19,13 +17,13 @@
                 ">
               <div class="card-body p-5 shadow-5 text-center">
 
-                <div class = "anjali">
-
-                    <h3>{{messages.0}}</h3>
-
-                  </div>
-
+                  <div class="anjali">
+                    {% for message in messages %}
+                    <h3>{{message}}</h3>
+                    {% endfor %}
+                </div>
                 <h2 class="fw-bold mb-5">Register Now</h2>
+
 
                 <form method="post">
                   {% csrf_token %}
@@ -72,13 +70,16 @@
 
 
                   <!-- Submit button -->
-
-
                   <button type="submit" class="btn btn-primary btn-block mb-4">
-                    signUp
+                    Sign up
                   </button>
 
+                  <!-- Register buttons -->
+
+
                 </form>
+
+
 
               </div>
             </div>
@@ -94,20 +95,5 @@
 
 
 </div>
-
-
-<script>
-<!--  let pop = document.getElementById('popup');-->
-<!--  let mes = document.getElementById('ca')-->
-<!--  function popup(){-->
-<!--&lt;!&ndash;    alert("clicked");&ndash;&gt;-->
-<!--&lt;!&ndash;    mes.innerHTML = "{{message}}"&ndash;&gt;-->
-<!--&lt;!&ndash;    mes.style.color = "green"&ndash;&gt;-->
-<!--&lt;!&ndash;    pop.classList.add('openpopup')&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;  alert("ajay")&ndash;&gt;&ndash;&gt;-->
-<!--  }-->
-
-</script>
-
 
 {% endblock %}

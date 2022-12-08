@@ -104,8 +104,8 @@
                     <img id="ci" src='correct.png'>
                     <h1 id="res">Correct Answer</h1>
                     <p id="res_mess">Congratulation sir your answer is correct !!</p>
-                    <h5 id ="tt"></h5>
-                     <h5 id ="ca"></h5>
+                    <h5 id ="tt"  style="color:red;" ></h5>
+                     <b><h5 id ="ca"></h5></b>
                     <input class="btn" style="background-color:orange; color:white; margin:20px;" type="submit" value="Next  ➤ ">
 <!--                    <button type="submit" onclick="closepopup()">Next</button>-->
               </div>
@@ -154,7 +154,7 @@
         document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
         document.getElementById('time_taken').value = tim;
         document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
-        document.getElementById('ca').style.color = "green";
+        document.getElementById('ca').style.color = "limegreen";
         popup.classList.add('openpopup');
 
     }
@@ -165,7 +165,7 @@
         document.getElementById('res_mess').innerHTML = "Oh no.... "
         document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
         document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
-        document.getElementById('ca').style.color = "red";
+        document.getElementById('ca').style.color = "limegreen";
         document.getElementById('time_taken').value = 0;
 
         popup.classList.add('openpopup');
@@ -185,5 +185,5 @@ findSelected();
 
 
 </script>
-      
+
 {% endblock %}

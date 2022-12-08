@@ -13,7 +13,6 @@ from datetime import datetime
 # tlis =[]
 #countt =[0]
 def profile1(request):
-    #countt[0] = 0
     count = 0
     # request.session['lis']=0
     # request.session['tlis']=0
@@ -62,7 +61,6 @@ def cate(request):
     request.session['tlis'] = 0
     request.session['count'] = 1
     request.session['countt'] = 0
-
     print("cat list : ",request.session['lis'])
     #request.session['lis'] = request.session['lis']+1
 
@@ -156,8 +154,6 @@ def ques(request,idd):
 
 
                 print('correct answer')
-
-
                 if request.session['count'] >= 10:
                     request.session['ttime'] = request.session['tlis']
                     print(request.session['tlis'])
@@ -204,6 +200,8 @@ def ques(request,idd):
 
     return render(request,'index.html',dis)
 
+
+
 def result(request,slis):
     try:
         emoji = {
@@ -238,14 +236,17 @@ def result(request,slis):
         elif request.session['countt'] == 0:
             request.session['countt'] = 1
             return render(request, 'result.html',{'score': uscore, 'emoji': emo, 'timetaken': utimetaken, 'rank': rank})
+
+
+
         else:
-            #request.session['countt'] = 0
+            #countt[0]=0
             # return render(request, 'result.html',{'score': uscore, 'emoji': emo, 'timetaken': utimetaken, 'rank': rank})
             return redirect('/')
 
 
     except:
-        #request.session['countt'] = 0
+        #countt[0] = 0
         return redirect('/')
 
 
@@ -292,19 +293,19 @@ def loaddata(request):
 
 def certificate(request):
 
-    obj = Data(f'{request.user.first_name} {request.user.last_name}',datetime.today(),request.session['mostplay'])
-    print(obj)
-    #obj.imagesize(150, 150,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playhere.png', '/media/playhere/playherelogo.png')
-    t = f'''" is hereby awardes this certificate of achievement for the successfully \n           getting 10,000 rank on 'codeaj.pythonanywhere.com' \n                          by playing {obj.course} on {obj.date} "'''
-    obj.imgCreate('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/bg.jpg', 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/mainlogo.png', 50, obj.name, 34, 177, 76, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 320, 200, 250,70)
-    obj.AddText(20, t, 225, 225, 225,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/textfont.ttf', 150, 280)
-    obj.AddText(15, '    Ajay Pandit \n  CTO of codeaj', 225, 225, 225, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 95, 493)
-    obj.AddText(15, 'Md Raza subhani \n  CTO of codeaj', 225, 225, 225, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 680, 500)
-    obj.AddImage('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playherelogo.png', 360, 400)
-    #obj.AddImage('cistlogo.jpg',480,450)
-    print(f"{obj.outimg} created !!")
+    # obj = Data(f'{request.user.first_name} {request.user.last_name}',datetime.today(),request.session['mostplay'])
+    # print(obj)
+    # #obj.imagesize(150, 150,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playhere.png', '/media/playhere/playherelogo.png')
+    # t = f'''" is hereby awardes this certificate of achievement for the successfully \n           getting 10,000 rank on 'codeaj.pythonanywhere.com' \n                          by playing {obj.course} on {obj.date} "'''
+    # obj.imgCreate('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/bg.jpg', 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/mainlogo.png', 50, obj.name, 34, 177, 76, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 320, 200, 250,70)
+    # obj.AddText(20, t, 225, 225, 225,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/textfont.ttf', 150, 280)
+    # obj.AddText(15, '    Ajay Pandit \n  CTO of codeaj', 225, 225, 225, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 95, 493)
+    # obj.AddText(15, 'Md Raza subhani \n  CTO of codeaj', 225, 225, 225, 'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/namefont.ttf', 680, 500)
+    # obj.AddImage('C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playherelogo.png', 360, 400)
+    # #obj.AddImage('cistlogo.jpg',480,450)
+    # print(f"{obj.outimg} created !!")
 
-    return render(request,'certification.html',{'rank' : request.session['rank'],'imgurl':obj.outimg})
+    return render(request,'certification.html',{'rank' : request.session['rank']})
 
 
 def AddMoreDetails(request):

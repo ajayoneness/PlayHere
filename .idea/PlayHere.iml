@@ -6,6 +6,9 @@
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/DLLs" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/pythonwin" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/win32" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/win32/lib" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/DLLs">
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/DLLs" isTestSource="false" />
@@ -13,6 +16,9 @@
     <content url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib">
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/pythonwin" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/win32" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/AppData/Local/Programs/Python/Python310/Lib/site-packages/win32/lib" isTestSource="false" />
     </content>
     <content url="file://$USER_HOME$/AppData/Roaming/Python/Python310/site-packages">
       <sourceFolder url="file://$USER_HOME$/AppData/Roaming/Python/Python310/site-packages" isTestSource="false" />

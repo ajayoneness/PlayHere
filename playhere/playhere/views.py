@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib import messages
 from quiz.models import addmore
 from django.contrib.auth.models import User,auth
@@ -16,9 +16,10 @@ def main(request):
 
         if user is not None:
             auth.login(request,user)
-            return render(request,"Home.html")
+            return redirect("/quiz/")
         else:
             messages.info(request,"invalid user")
+            return redirect("/#login")
 
     try:
         aobj = addmore.objects.filter(user=request.user).order_by("-id")
