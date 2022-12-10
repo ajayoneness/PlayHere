@@ -3,15 +3,24 @@ from .models import profile,cat,questions,addmore
 import random
 from django.core.files.storage import FileSystemStorage
 from .helper import Data
-from datetime import datetime
+
+def fileHandel():
+    def read_file(file_name):
+        file = open(file_name, 'r')
+        for each in file:
+            print(each)
+
+    def create_write(file_name, txt):
+        file = open(file_name, 'w')
+        file.write(txt)
+        file.close()
+
+    def append_text_in_file(file_name, txt):
+        file = open(file_name, 'a')
+        file.write(txt)
+        file.close()
 
 
-
-
-
-# lis = []
-# tlis =[]
-#countt =[0]
 def profile1(request):
     count = 0
     # request.session['lis']=0
@@ -204,19 +213,19 @@ def ques(request,idd):
 
 def result(request,slis):
     try:
-        emoji = {
-            0:['https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','you need to practice more ', '345vcfhgjvgdfgh43564578'],
-            1:['https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','you need to practice more ','4356guyhgcxfdft56787'],
-            2:['https://media0.giphy.com/media/h4OGa0npayrJX2NRPT/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','ohh so sad','567ghvhmbkj678vgvbjgh'],
-            3:['https://media0.giphy.com/media/kfS15Gnvf9UhkwafJn/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g','not bad','678yhjmbjhbjn7yigvhj78'],
-            4:['https://media2.giphy.com/media/j4l0mCdcTFRyY4Bc5s/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g','nice','65778uhbnuyfjgy78uyt7ugfvy7'],
-            5:['https://media0.giphy.com/media/USUIWSteF8DJoc5Snd/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','not bad','567ytfhgnhbvhnhyut6u567'],
-            6:['https://media4.giphy.com/media/hp3dmEypS0FaoyzWLR/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','wow','67yyujhnbhnhj78uuhbnb'],
-            7:['https://media1.giphy.com/media/hVlZnRT6QW1DeYj6We/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','suer','657uhjmbjknbhg78u'],
-            8:['https://media4.giphy.com/media/UQDSBzfyiBKvgFcSTw/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','good','54657uyughjnbvnjnhbn'],
-            9:['https://media2.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','sweet','gyjukhbvghjbvg6757676j'],
-            10:['https://media3.giphy.com/media/lRXY41yFFi9RfNXyPN/giphy.gif?cid=ecf05e47mxr383ar6o6yxhzr5iaoa8j6iw17z3axmyc3dgau&rid=giphy.gif&ct=g','so, sweet','6457678uygjkhg687yh'],
-            }
+        emoji ={
+                0:['https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','you need to practice more ', '345vcfhgjvgdfgh43564578'],
+                1:['https://media3.giphy.com/media/IzcFv6WJ4310bDeGjo/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','you need to practice more ','4356guyhgcxfdft56787'],
+                2:['https://media0.giphy.com/media/h4OGa0npayrJX2NRPT/giphy.gif?cid=ecf05e47k3nntc4i6h0dka9ewtqldv1j67d5m52kurajmtj1&rid=giphy.gif&ct=g','ohh so sad','567ghvhmbkj678vgvbjgh'],
+                3:['https://media0.giphy.com/media/kfS15Gnvf9UhkwafJn/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g','not bad','678yhjmbjhbjn7yigvhj78'],
+                4:['https://media2.giphy.com/media/j4l0mCdcTFRyY4Bc5s/giphy.gif?cid=ecf05e47la8y34pgr207jtpmr6k5q9q7g34sr6zm25oywgoe&rid=giphy.gif&ct=g','nice','65778uhbnuyfjgy78uyt7ugfvy7'],
+                5:['https://media0.giphy.com/media/USUIWSteF8DJoc5Snd/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','not bad','567ytfhgnhbvhnhyut6u567'],
+                6:['https://media4.giphy.com/media/hp3dmEypS0FaoyzWLR/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','wow','67yyujhnbhnhj78uuhbnb'],
+                7:['https://media1.giphy.com/media/hVlZnRT6QW1DeYj6We/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','suer','657uhjmbjknbhg78u'],
+                8:['https://media4.giphy.com/media/UQDSBzfyiBKvgFcSTw/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','good','54657uyughjnbvnjnhbn'],
+                9:['https://media2.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47xzour2hglinyz1ann7ex8ghg5tgw5i31et1sym2h&rid=giphy.gif&ct=g','sweet','gyjukhbvghjbvg6757676j'],
+                10:['https://media3.giphy.com/media/lRXY41yFFi9RfNXyPN/giphy.gif?cid=ecf05e47mxr383ar6o6yxhzr5iaoa8j6iw17z3axmyc3dgau&rid=giphy.gif&ct=g','so, sweet','6457678uygjkhg687yh'],
+        }
 
         ucategory = request.session['category']
         uscore = slis
@@ -292,7 +301,6 @@ def loaddata(request):
 
 
 def certificate(request):
-
     # obj = Data(f'{request.user.first_name} {request.user.last_name}',datetime.today(),request.session['mostplay'])
     # print(obj)
     # #obj.imagesize(150, 150,'C:/Users/ajayo/OneDrive/Desktop/PlayHere/playhere/media/playhere/playhere.png', '/media/playhere/playherelogo.png')
@@ -340,3 +348,4 @@ def AddMoreDetails(request):
         pass
 
     return render(request,'addmore.html',{'obj':obj,'date':str(da)})
+

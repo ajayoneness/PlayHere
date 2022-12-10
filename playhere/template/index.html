@@ -54,6 +54,12 @@
         cursor: pointer;
         box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 
+        .btn{
+            text-align : center;
+            background-color : green;
+
+        }
+
 
     }
 
@@ -83,7 +89,7 @@
           <div class="card-body">
 
               {% if q_obj == '' %}
-                <h5 class="card-title txt">We are working on this coming soon.....</h5>
+                <h5 class="card-title txt">We are working on this coming soon.....)</h5>
               {% else %}
 
                 {% if q_obj.subquestion != '' %}
@@ -106,7 +112,7 @@
                     <p id="res_mess">Congratulation sir your answer is correct !!</p>
                     <h5 id ="tt"  style="color:red;" ></h5>
                      <b><h5 id ="ca"></h5></b>
-                    <input class="btn" style="background-color:orange; color:white; margin:20px;" type="submit" value="Next  ➤ ">
+                    <input class="btn" style="background-color:orange; color:white; margin-top :20px; width:150px; " type="submit" value="Next  ➤">
 <!--                    <button type="submit" onclick="closepopup()">Next</button>-->
               </div>
 
