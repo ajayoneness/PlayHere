@@ -1,0 +1,195 @@
+{% extends 'Home.html' %}
+
+{% block content %}
+    <style>
+        #o1,#o2,#o3,#o4{
+            color:white;
+            background-color: rgba(1,1,1,0.2);
+            border-radius: 5px;
+            padding-left: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        } 
+        
+        .incorrect{
+            background-color: rgba(225,0,0,0.3);
+            transition: 1s;
+            border:2px solid red;
+        }
+        
+        .incorrect:hover{
+            background: red;
+            box-shadow: 0px 0px 30px red;
+        }
+        
+        .correct{
+            background-color: chartreuse;
+            border : 2px solid chartreuse;
+            transition: 0.5s;
+        }
+        
+        
+        
+        .correct:hover{
+            
+            background-color:chartreuse;
+            box-shadow: 0px 0px 30px chartreuse;
+        }
+        
+        .spa{
+            padding-left: 5px;
+            margin-right: 10px;
+            background-color: red;
+            padding-right: 3px;
+            border-radius: 5px;
+            color: dimgrey;
+            background-color: white;
+        }
+        
+        .resul{
+            padding: 40px;
+            background: rgba(0,0,0,0.1);
+            margin-top: 20px;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0px 0px 3px black;
+        }
+        
+        .userdetails{
+            padding: 20px;
+            margin-top: 80px;
+            box-shadow: 0px 0px 2px black;
+            background: linear-gradient(0.25turn, #3f87a6, gray,#3f87a6);
+            
+        }
+        .userdetails h2{
+            font-family:serif;
+            text-transform:capitalize;
+            letter-spacing: 4px;
+            font-weight: 900;
+            color:black;
+        
+        }
+    
+      
+</style>
+
+
+<div class="container">
+    <div class="userdetails">
+        <div class="row">
+            <div class="col">
+            <h2>{{user.first_name}} {{ user.last_name }}</h2>
+                <p>{{user.username}}</p>
+            <p>{{user.email}}</p>
+        </div>
+        <div class="col">
+            <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g" alt="Avatar" class="img-fluid my-3" style="width: 90px;" />
+        </div>
+
+        </div>
+
+
+
+        <hr>
+        <h5>Score ➟ {{score}}/10</h5>
+        <h5>Point ➟ {{points}}</h5>
+        <p>Time ➟ {{time}} sec</p>
+        <p>category ➟ {{ucat}}</p>
+    </div>
+
+    {% for i in data %}
+    <div class="resul">
+        <h5 class="txt">QN{{ forloop.counter }}. {{i.0}}</h5>
+        <hr>
+        <h5 style="color:white; text-shadow:0px 0px 10px black;  padding:5px; background-color:rgba(0,0,0,.2); border-radius:5px; "><pre>{{i.1}}</pre></h5><br>
+
+                    {% if i.6 == "1"%}
+                        <p id="o1" class="correct" ><span class="spa">1.</span>{{i.2}}</p>
+                    {% else %}
+                        {% if i.9 == 1 %}
+                        <p id="o1" class="incorrect" ><span class="spa">1.</span>{{i.2}}</p>
+                        {% else %}
+                        <p id="o1" ><span class="spa">1.</span>{{i.2}}</p>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if i.6 == "2"%}
+                    <p id="o2" class="correct" ><span class="spa">2.</span>{{i.3}}</p>
+                    {% else %}
+                        {% if i.9 == 2 %}
+                        <p id="o2" class="incorrect" ><span class="spa">1.</span>{{i.3}}</p>
+                        {% else %}
+                        <p id="o2" ><span class="spa">1.</span>{{i.3}}</p>
+                        {% endif %}
+
+                    {% endif %}
+
+                    {% if i.6 == "3" %}
+                    <p id="o3" class="correct" ><span class="spa">3.</span>{{i.4}}</p>
+                    {% else %}
+                        {% if i.9 == 3 %}
+                        <p id="o3" class="incorrect" ><span class="spa">1.</span>{{i.4}}</p>
+                        {% else %}
+                        <p id="o3" ><span class="spa">1.</span>{{i.4}}</p>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if i.6 == "4"%}
+                    <p id="o4" class="correct" ><span class="spa">4.</span>{{i.5}}</p>
+                    {% else %}
+                    {% if i.9 == 2 %}
+                        <p id="o4" class="incorrect" ><span class="spa">1.</span>{{i.5}}</p>
+                        {% else %}
+                        <p id="o4" ><span class="spa">1.</span>{{i.5}}</p>
+                        {% endif %}
+                    {% endif %}
+
+                    <!--     incorrect       -->
+
+<!--                    {% if "i.9" == i.6 %}-->
+<!--                        <p> correct answer </p>-->
+<!--                    {% endif %}-->
+
+
+
+
+    </div>
+
+
+     {% endfor %}
+
+</div>
+
+      
+      
+<!--<script>-->
+<!--            var your_ans = {{i.9}}-->
+<!--            var ans = {{i.6}}-->
+<!--            var aj =document.getElementsByClassName("resul")-->
+
+<!--          if (your_ans == ans){-->
+<!--                console.log(aj)-->
+<!--          }-->
+<!--          -->
+<!--          else{-->
+<!--                document.write("incorrect")-->
+<!--          }-->
+
+<!--          var option1 = document.getElementById('o1')-->
+<!--          var option2 = document.getElementById('o2')-->
+<!--          var option3 = document.getElementById('o3')-->
+<!--          var option4 = document.getElementById('o4')-->
+
+<!--          option1.setAttribute("class", 'correct')-->
+<!--          option3.setAttribute("class", 'incorrect')-->
+
+<!--      </script>-->
+
+
+<!--      -->
+      
+      
+      
+      
+    {% endblock %}

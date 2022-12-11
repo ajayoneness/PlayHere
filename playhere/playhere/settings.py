@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'account',
     'challenge',
     'feedback',
+    'result',
     'django_userforeignkey',
     'django_extensions',
 ]

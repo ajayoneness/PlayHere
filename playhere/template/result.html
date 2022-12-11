@@ -24,6 +24,7 @@
                       <div class="row" style="position:relative; right:60px;">
                           <div class="col">
                               {% if user.is_authenticated%}
+                                <a class="btn m-3 btt" href="{% url 'fullresult' %}">View full result</a>
                               {% else %}
                               <a style="position: relative;" href="/#login" class="btn m-3 btt">Register Now</a>
                               {% endif %}

@@ -3,6 +3,8 @@ from .models import profile,cat,questions,addmore
 import random
 from django.core.files.storage import FileSystemStorage
 from .helper import Data
+from result.models import fullresult
+
 
 def fileHandel():
     def read_file(file_name):
@@ -26,6 +28,7 @@ def profile1(request):
     # request.session['lis']=0
     # request.session['tlis']=0
     # request.session['count']=0
+    request.session['tenque'] = {}
 
     print(type(request.session['lis']))
     print(request.session['lis'])
@@ -162,8 +165,18 @@ def ques(request,idd):
                 print('mark count : ', request.session['lis'])
 
 
+
+
+
+
+                q = random.randint(0, count)
+                set = request.session["tenque"]
+                set[f"q{request.session['count']}"] = q
+                set[f"ya{request.session['count']}"] = int(select)
+                print(f" i am dict : {request.session['tenque']}")
+                request.session['count'] += 1
                 print('correct answer')
-                if request.session['count'] >= 10:
+                if request.session['count'] >= 11:
                     request.session['ttime'] = request.session['tlis']
                     print(request.session['tlis'])
                     print(request.session['ttime'])
@@ -173,11 +186,14 @@ def ques(request,idd):
                     request.session['lis'] = 0
                     request.session['tlis'] = 0
                     print(uniquekey[sumlis])
+                    print(f"ten question dic : {request.session['tenque']}")
                     return redirect(f'/quiz/result/{sumlis}')
 
-                request.session['count'] += 1
 
-                return redirect(f'/quiz/ques/{random.randint(0,count)}')
+
+
+
+                return redirect(f'/quiz/ques/{q}')
 
             else:
                 try:
@@ -190,8 +206,21 @@ def ques(request,idd):
 
                 request.session['lis'] += 0
                 print('mark count : ',request.session['lis'])
+
+
+
+
+
+                q = random.randint(0, count)
+                set = request.session["tenque"]
+                set[f"q{request.session['count']}"] = q
+                set[f"ya{request.session['count']}"] = int(select)
+                print(f" i am dict : {request.session['tenque']}")
+
+
+                request.session['count'] += 1
                 print('incorrect Answer')
-                if request.session['count'] >= 10:
+                if request.session['count'] >= 11:
                     request.session['ttime'] = request.session['tlis']
                     print(request.session['tlis'])
                     print("tlis session : ",request.session['ttime'])
@@ -200,8 +229,9 @@ def ques(request,idd):
                     request.session['lis'] = 0
                     # print(uniquekey[sumlis])
                     return redirect(f'/quiz/result/{sumlis}')
-                request.session['count'] += 1
-                return redirect(f'/quiz/ques/{random.randint(0, count)}')
+
+
+                return redirect(f'/quiz/ques/{q}')
         else :
             pass
     print('end point of count session : ',request.session['count'])
@@ -229,10 +259,36 @@ def result(request,slis):
 
         ucategory = request.session['category']
         uscore = slis
+        request.session['uscore']=uscore
         emo = emoji[uscore]
         #comming soon
         utimetaken = request.session['ttime']
         rank = ((uscore*100)-(utimetaken))/100
+
+        tq = request.session['tenque']
+
+        #add full result to database
+        fullres = fullresult(user_name=request.user.username,
+                             q1 = tq['q1'],ya1=tq['ya1'],
+                             q2 = tq['q2'],ya2=tq['ya2'],
+                             q3 = tq['q3'],ya3=tq['ya3'],
+                             q4 = tq['q4'],ya4=tq['ya4'],
+                             q5 = tq['q5'],ya5=tq['ya5'],
+                             q6 = tq['q6'],ya6=tq['ya6'],
+                             q7 = tq['q7'],ya7=tq['ya7'],
+                             q8 = tq['q8'],ya8=tq['ya8'],
+                             q9 = tq['q9'],ya9=tq['ya9'],
+                             q10 = tq['q10'],ya10 =tq['ya10'],
+                             score = uscore,
+                             points = rank,
+                             time_taken = utimetaken,
+                             ctg = ucategory
+                             )
+        fullres.save()
+        print("print Save to database")
+
+
+
 
         if request.user.is_authenticated and request.session['countt'] == 0:
             request.session['countt'] = 1
