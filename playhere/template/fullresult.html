@@ -118,9 +118,9 @@
                     <p id="o2" class="correct" ><span class="spa">2.</span>{{i.3}}</p>
                     {% else %}
                         {% if i.9 == 2 %}
-                        <p id="o2" class="incorrect" ><span class="spa">1.</span>{{i.3}}</p>
+                        <p id="o2" class="incorrect" ><span class="spa">2.</span>{{i.3}}</p>
                         {% else %}
-                        <p id="o2" ><span class="spa">1.</span>{{i.3}}</p>
+                        <p id="o2" ><span class="spa">2.</span>{{i.3}}</p>
                         {% endif %}
 
                     {% endif %}
@@ -129,19 +129,19 @@
                     <p id="o3" class="correct" ><span class="spa">3.</span>{{i.4}}</p>
                     {% else %}
                         {% if i.9 == 3 %}
-                        <p id="o3" class="incorrect" ><span class="spa">1.</span>{{i.4}}</p>
+                        <p id="o3" class="incorrect" ><span class="spa">3.</span>{{i.4}}</p>
                         {% else %}
-                        <p id="o3" ><span class="spa">1.</span>{{i.4}}</p>
+                        <p id="o3" ><span class="spa">3.</span>{{i.4}}</p>
                         {% endif %}
                     {% endif %}
 
                     {% if i.6 == "4"%}
                     <p id="o4" class="correct" ><span class="spa">4.</span>{{i.5}}</p>
                     {% else %}
-                    {% if i.9 == 2 %}
-                        <p id="o4" class="incorrect" ><span class="spa">1.</span>{{i.5}}</p>
+                    {% if i.9 == 4 %}
+                        <p id="o4" class="incorrect" ><span class="spa">4.</span>{{i.5}}</p>
                         {% else %}
-                        <p id="o4" ><span class="spa">1.</span>{{i.5}}</p>
+                        <p id="o4" ><span class="spa">4.</span>{{i.5}}</p>
                         {% endif %}
                     {% endif %}
 
@@ -151,7 +151,11 @@
 <!--                        <p> correct answer </p>-->
 <!--                    {% endif %}-->
 
+        <p>
+            your_answer : {{i.9}}
+            answer : {{i.6}}
 
+        </p>
 
 
     </div>
