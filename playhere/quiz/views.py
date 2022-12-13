@@ -171,9 +171,11 @@ def ques(request,idd):
 
                 q = random.randint(0, count)
                 set = request.session["tenque"]
-                set[f"q{request.session['count']}"] = q
+                set[f"q{request.session['count']}"] = idd
                 set[f"ya{request.session['count']}"] = int(select)
                 print(f" i am dict : {request.session['tenque']}")
+
+
                 request.session['count'] += 1
                 print('correct answer')
                 if request.session['count'] >= 11:
@@ -213,7 +215,7 @@ def ques(request,idd):
 
                 q = random.randint(0, count)
                 set = request.session["tenque"]
-                set[f"q{request.session['count']}"] = q
+                set[f"q{request.session['count']}"] = idd
                 set[f"ya{request.session['count']}"] = int(select)
                 print(f" i am dict : {request.session['tenque']}")
 
