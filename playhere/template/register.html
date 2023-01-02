@@ -3,97 +3,267 @@
 {% block content %}
 <!--   rEgister Form-->
 
-  <div class="container raj" id="register">
+  
+    <style>
+        #form_id input{
+            /*box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;*/
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+            border :none;
+        }
+        .weak-password{
+            padding: 10px;
+            background-color: rgba(255, 0, 0, 0.47);
+            border : 1px solid red;
+            border-radius: 5px;
 
-    <!-- Section: Design Block -->
-    <section class="text-center text-lg-start">
-      <!-- Jumbotron -->
-      <div class="py-4">
-        <div class="row g-0 align-items-center">
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <div class="card cascading-right" style="
-                background: hsla(0, 0%, 100%, 0.55);
-                backdrop-filter: blur(30px);
-                ">
-              <div class="card-body p-5 shadow-5 text-center">
+        }
+        .medium-password{
+            padding: 10px;
+            background-color: rgba(255, 234, 0, 0.47);
+            border : 1px solid rgb(255, 225, 0);
+            border-radius: 5px;
+        }
+        .strong-password{
+            padding: 10px;
+            background-color: rgba(0, 255, 72, 0.47);
+            border : 1px solid rgb(0, 255, 85);
+            border-radius: 5px;
+        }
 
-                  <div class="anjali">
-                    {% for message in messages %}
-                    <h3>{{message}}</h3>
-                    {% endfor %}
+
+    </style>
+
+
+    <div class="container raj" id="register">
+
+        <!-- Section: Design Block -->
+        <section class="text-center text-lg-start">
+          <!-- Jumbotron -->
+          <div class="py-4">
+            <div class="row g-0 align-items-center">
+              <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="card cascading-right" style="
+                    background: hsla(0, 0%, 100%, 0.55);
+                    backdrop-filter: blur(30px);
+                    ">
+                  <div class="card-body p-5 shadow-5 text-center">
+    
+                      <div class="anjali">
+                        {% for message in messages %}
+                        <h3>{{message}}</h3>
+                        {% endfor %}
+                    </div>
+                    <h2 class="fw-bold mb-5">Register Now</h2>
+    
+    
+                    <form method="post" id="form_id">
+                      {% csrf_token %}
+                      <!-- 2 column grid layout with text inputs for the first and last names -->
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example1">First name</label>
+                            <input name="first_name" onkeydown="return /[a-z]/i.test(event.key)" type="text" placeholder="First Name" id="fname" class="form-control" />
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="form3Example2">Last name</label>
+                            <input  name="last_name" onkeydown="return /[a-z]/i.test(event.key)" placeholder="Last Name" type="text" id="lname" class="form-control" />
+                            
+                          </div>
+                        </div>
+                      </div>
+    
+                        <!-- user name -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3">User Name</label>
+                        <input name="user_name" placeholder="User Name" type="text" id="uname" class="form-control" />
+                        
+                      </div>
+    
+                      <!-- Email input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3">Email address</label>
+                        <input name="email" placeholder="Email" type="email" id="email" class="form-control" />
+                        
+                      </div>
+                      <div class="form-outline mb-4">
+                        <p id="estatus"></p>
+                      </div>
+    
+                      <!-- Password input -->
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example4">Password</label>
+                        <input name="password" placeholder="Password" type="password" id="password" class="form-control" />
+                      </div>
+
+
+                      <div class="form-outline mb-4">
+                        <p id="password-strength-status"></p>
+                      </div>
+    
+                        <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example4">Re-Password</label>
+                        <input name="repassword" placeholder="Re-Password" type="password" id="repassword" class="form-control" />
+
+                        
+                      </div>
+                      <div class="form-outline mb-4">
+                        <p id="status"></p>
+                      </div>
+    
+                      <!-- Checkbox -->
+    
+    
+                      <!-- Submit button -->
+                      <button type="button" onclick="reg()" id="btn" class="btn btn-primary btn-block mb-4">
+                        Sign up
+                      </button>
+    
+                      <!-- Register buttons -->
+    
+    
+                    </form>
+    
+    
+    
+                  </div>
                 </div>
-                <h2 class="fw-bold mb-5">Register Now</h2>
-
-
-                <form method="post">
-                  {% csrf_token %}
-                  <!-- 2 column grid layout with text inputs for the first and last names -->
-                  <div class="row">
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input name="first_name" type="text" placeholder="First Name" id="form3Example1" class="form-control" />
-                        <label class="form-label" for="form3Example1">First name</label>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                      <div class="form-outline">
-                        <input  name="last_name" placeholder="Last Name" type="text" id="form3Example2" class="form-control" />
-                        <label class="form-label" for="form3Example2">Last name</label>
-                      </div>
-                    </div>
-                  </div>
-
-                    <!-- user name -->
-                  <div class="form-outline mb-4">
-                    <input name="user_name" placeholder="User Name" type="text" id="form3Example3" class="form-control" />
-                    <label class="form-label" for="form3Example3">User Name</label>
-                  </div>
-
-                  <!-- Email input -->
-                  <div class="form-outline mb-4">
-                    <input name="email" placeholder="Email" type="email" id="form3Example3" class="form-control" />
-                    <label class="form-label" for="form3Example3">Email address</label>
-                  </div>
-
-                  <!-- Password input -->
-                  <div class="form-outline mb-4">
-                    <input name="password" placeholder="Password" type="password" id="form3Example4" class="form-control" />
-                    <label class="form-label" for="form3Example4">Password</label>
-                  </div>
-
-                    <div class="form-outline mb-4">
-                    <input name="repassword" placeholder="Re-Password" type="password" id="form3Example4" class="form-control" />
-                    <label class="form-label" for="form3Example4">Re-Password</label>
-                  </div>
-
-                  <!-- Checkbox -->
-
-
-                  <!-- Submit button -->
-                  <button type="submit" class="btn btn-primary btn-block mb-4">
-                    Sign up
-                  </button>
-
-                  <!-- Register buttons -->
-
-
-                </form>
-
-
-
+              </div>
+    
+              <div class="col-lg-6 mb-5 mb-lg-0">
+                <img src="https://media4.giphy.com/media/N9zbeSXrlPVUcJiEX1/giphy.gif?cid=ecf05e4795h28l0k3doaid7ioxh0scblrpxnqsrvt4g9tnnk&rid=giphy.gif&ct=s" class="w-100 rounded-4 shadow-4" alt="" width="200px"/>
               </div>
             </div>
           </div>
+          <!-- Jumbotron -->
+        </section>
+    
+    
+    </div>
 
-          <div class="col-lg-6 mb-5 mb-lg-0">
-            <img src="https://media4.giphy.com/media/N9zbeSXrlPVUcJiEX1/giphy.gif?cid=ecf05e4795h28l0k3doaid7ioxh0scblrpxnqsrvt4g9tnnk&rid=giphy.gif&ct=s" class="w-100 rounded-4 shadow-4" alt="" width="200px"/>
-          </div>
-        </div>
-      </div>
-      <!-- Jumbotron -->
-    </section>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $( document ).ready(function() {
+            console.log( "ready!" );
+        });
+
+        function reg()
+        {
+            fname = $("#fname").val()
+            lname = $("#lname").val()
+            uname = $("#uname").val()
+            email = $("#email").val()
+            password = $("#password").val()
+            repassword = $("#repassword").val()
+            
+            if (fname == ""){
+                alert("Plase Enter First Name")
+            }
+            else if (lname == ""){
+                alert("Please Enter Last Name ")
+            }
+            else if (uname == ""){
+                alert("Please Enter Username Name ")
+            }
+            else if(email == ""){
+                alert("Please Enter Your Email id ")
+            }
+            else if(IsEmail(email)==false){
+                alert("Please Enter valid Email id ...")
+            }
+            
+            else if(password == ""){
+                alert("Please Enter Password")
+            }
+            else if (repassword == ""){
+                alert("Please Enter Re-Password")
+            }
+            else if(password != repassword){
+                alert("Both Password are not same")
+            }
+            else{
+
+                $("#form_id").submit()
+            }
+
+        }
 
 
-</div>
+        document.getElementById('password').onkeyup = function(){
+            
+            var number = /([0-9])/;
+            var alphabets = /([a-zA-Z])/;
+            var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
+            var password = $('#password').val().trim();
+            if (password.length < 6) {
+                $('#password-strength-status').removeClass();
+                $('#password-strength-status').addClass('weak-password');
+                $('#password-strength-status').html("Weak (should be atleast 6 characters.)");
+            } else {
+                if (password.match(number) && password.match(alphabets) && password.match(special_characters)) {
+                    $('#password-strength-status').removeClass();
+                    $('#password-strength-status').addClass('strong-password');
+                    $('#password-strength-status').html("Strong");
+                }
+                else {
+                    $('#password-strength-status').removeClass();
+                    $('#password-strength-status').addClass('medium-password');
+                    $('#password-strength-status').html("Medium (should include alphabets, numbers and special characters.)");
+                }
+            }
+        };
+
+        document.getElementById('repassword').onkeyup = function(){
+            var password = $('#password').val()
+            var repassword = $('#repassword').val()
+            if (password != repassword){
+                $('#status').removeClass();
+                $('#status').addClass('weak-password');
+                $('#status').html("Both Password are not same😈😭😭");
+            } else {
+                $('#status').removeClass();
+                $('#status').addClass('strong-password');
+                $('#status').html("😍😍😍😍😍😍😍");
+            }
+        }
+
+        document.getElementById('email').onkeyup = function(){
+            email = $("#email").val()
+            if(IsEmail(email)==false){
+                $('#estatus').removeClass();
+                $('#estatus').addClass('weak-password');
+                $('#estatus').html("Invalid Email 😈😭😭");
+            } 
+            else{
+                $('#estatus').removeClass();
+                $('#estatus').addClass('strong-password');
+                $('#estatus').html("😍😍😍😍😍😍😍");
+            }
+
+        }
+
+
+
+
+        function IsEmail(email) {
+            var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!regex.test(email)) {
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+        
+
+
+
+    </script>
 
 {% endblock %}
