@@ -24,11 +24,10 @@
 
     .container1{
       position: relative;
-      width: 400px;
       background: #111;
       padding: 20px 30px;
       border: 1px solid #444;
-      box-shadow: 0px 0px 5px black;
+      box-shadow: 0px 0px 5px black;s
       border-radius: 5px;
       display: flex;
       align-items: center;
@@ -153,10 +152,10 @@
 
 
 <!--  main category    -->
-<h1 class=" container sn m-5" style="color:#111; font-size:50px; position:relative; top:20px;">Feedback </h1>
+<h1 class=" sn m-5" style="color:#111; font-size:50px; position:relative; top:20px;">Feedback </h1>
 
 <div class="container">
- <div class="container1 col-12">
+ <div class="container1 mb-3 col-md-6 col-sm-12">
      <div class="star-widget">
         <input type="radio" name="rate" id="rate-5">
         <label for="rate-5" class="fas fa-star"></label>
@@ -170,23 +169,23 @@
         <label for="rate-1" class="fas fa-star"></label>
         <form method="post">
             {% csrf_token %}
-          <header></header>
           <div class="textarea">
-            <textarea cols="30"  name="userproblem" placeholder="Describe your experience..">{{yourfeed}}</textarea>
+            <textarea cols="30"  name="userproblem" placeholder="Describe your experience.">{{yourfeed}}</textarea>
           </div>
           <div class="btn">
             <button type="submit">Post</button>
           </div>
         </form>
+
      </div>
     </div>
-</div>
 
 
-<div class="container raj pt-5">
+
+<!--<div class="container raj pt-5">-->
     {% if yourobj != ""%}
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col-12 col-md-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+        <div class="col-12 col-md-12">
             <div class="car">
               <div class="card-body cb">
                 <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
@@ -206,7 +205,7 @@
 
     {% for i in fb %}
         {% if i.uname != user.username %}
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-12 mb-3">
         <div class="car">
           <div class="card-body cb">
             <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
