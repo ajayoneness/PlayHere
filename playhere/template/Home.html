@@ -17,9 +17,7 @@
           html{
                 scroll-behavior:smooth;
           }
-          .raj{
-          margin-top : 50px;
-          }
+
 
          .anjali{
               color : white;
@@ -42,7 +40,7 @@
   </head>
   <body>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark  md-5" >
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark mb-5" >
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'main'%}">Play<span style="color: darkcyan; font-weight: bold">Here</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,15 +110,16 @@
         </div>
       </div>
     </nav>
+<br><br>
 
 
     {% block content %}
 
-<div class="container raj pt-5">
+<div class="container mt-3">
     <div class=main>
 
         <div class="image">
-            <img src="https://media2.giphy.com/media/wROuKBxnaNF1MX8WLF/giphy.gif?cid=ecf05e470vo4bow1jcsqs04b8t2b3sa01efww3rzfjyim6k5&rid=giphy.gif&ct=ts" class="rounded float-end">
+            <img src="https://media2.giphy.com/media/wROuKBxnaNF1MX8WLF/giphy.gif?cid=ecf05e470vo4bow1jcsqs04b8t2b3sa01efww3rzfjyim6k5&rid=giphy.gif&ct=ts" class="img-fluid">
             <button onclick="location.href = '/quiz/category'" class="btt">Let's Play ➟ </button>
 
         </div>
