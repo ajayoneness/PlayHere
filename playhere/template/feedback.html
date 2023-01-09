@@ -58,7 +58,7 @@
       display: none;
     }
     .star-widget label{
-      font-size: 40px;
+      font-size: 5vw;
       color: #444;
       padding: 10px;
       float: right;
@@ -110,6 +110,28 @@
       width: 100%;
       overflow: hidden;
     }
+    form .name{
+        height: 50px;
+        width: 100%;
+        overflow: hidden;
+    }
+    form .name textarea{
+      height: 100%;
+      width: 100%;
+      outline: none;
+      color: #eee;
+      border: 1px solid #333;
+      background: #222;
+      padding: 10px;
+      font-size: 17px;
+      resize: none;
+    }
+
+    .name textarea:focus{
+      border-color: #444;
+    }
+
+
     form .textarea textarea{
       height: 100%;
       width: 100%;
@@ -169,6 +191,11 @@
         <label for="rate-1" class="fas fa-star"></label>
         <form method="post">
             {% csrf_token %}
+            {% if user.is_authenticated == False %}
+            <div class="name mb-2">
+                <textarea cols="10"  name="name" placeholder="Your Name">{{yourfeed}}</textarea>
+            </div>
+            {% endif%}
           <div class="textarea">
             <textarea cols="30"  name="userproblem" placeholder="Describe your experience.">{{yourfeed}}</textarea>
           </div>
@@ -183,45 +210,45 @@
 
 
 <!--<div class="container raj pt-5">-->
-    {% if yourobj != ""%}
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-        <div class="col-12 col-md-12">
-            <div class="car">
-              <div class="card-body cb">
-                <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
-                        alt="Avatar" class="img-fluid my-3" style="width: 50px;" />
-                <span class="card-title title span9" >{{yourobj.uname}}</span>
-                  <p style="font-size: 10px"><b>{{yourobj.date}}</b></p>
-                  <div style= "padding:8px; background-color:rgba(0,0,0,.5); border-radius:5px;">
+    {% if user.is_authenticated %}
+        {% if yourobj != ""%}
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
+            <div class="col-12 col-md-12">
+                <div class="car">
+                  <div class="card-body cb">
+                    <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
+                            alt="Avatar" class="img-fluid my-3" style="width: 50px;" />
+                    <span class="card-title title span9" >{{yourobj.uname}}</span>
+                      <p style="font-size: 10px"><b>{{yourobj.date}}</b></p>
+                      <div style= "padding:8px; background-color:rgba(0,0,0,.5); border-radius:5px;">
 
-                      <p class="card-text"><code style="color: white;">{{yourobj.mes}}</code></p>
+                          <p class="card-text"><code style="color: white;">{{yourobj.mes}}</code></p>
 
+                      </div>
                   </div>
-              </div>
+                </div>
             </div>
-        </div>
-        {%else%}
-        {% endif%}
+            {%else%}
+            {% endif%}
+        {% endif %}
 
     {% for i in fb %}
         {% if i.uname != user.username %}
-      <div class="col-12 col-md-12 mb-3">
-        <div class="car">
-          <div class="card-body cb">
-            <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
-                    alt="Avatar" class="img-fluid my-3" style="width:50px;" />
-            <span class="card-title span9" ><b>{{i.uname}}</b></span>
-              <p style="font-size: 10px"><b>{{i.date}}</b></p>
-              <div style= "padding:8px; background-color:rgba(0,0,0,.5); border-radius:5px;">
-
-                  <p class="card-text"><code style="color: white;">{{i.mes}}</code></p>
-
+          <div class="col-12 col-md-12 mb-3">
+            <div class="car">
+              <div class="card-body cb">
+                <img src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g"
+                        alt="Avatar" class="img-fluid my-3" style="width:50px;" />
+                <span class="card-title span9" ><b>{{i.uname}}</b></span>
+                  <p style="font-size: 10px"><b>{{i.date}}</b></p>
+                  <div style= "padding:8px; background-color:rgba(0,0,0,.5); border-radius:5px;">
+                      <p class="card-text"><code style="color: white;">{{i.mes}}</code></p>
+                  </div>
               </div>
+            </div>
           </div>
-        </div>
-      </div>
         {% endif %}
-        {% endfor %}
+    {% endfor %}
 
   </div>
 </div>

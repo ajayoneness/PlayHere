@@ -52,18 +52,20 @@
               <a class="nav-link active" aria-current="page" href="{% url 'main'%}">Home</a>
             </li>
 
-              <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="/#about">About</a>
+            </li>
+
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'feedback' %}">Feedback</a>
             </li>
 
               {% if user.is_authenticated %}
 
               <li class="nav-item">
               <a class="nav-link" href="{% url 'challenge' %}">Challenge</a>
-            </li>
-              <li class="nav-item">
-              <a class="nav-link" href="{% url 'feedback' %}">Feedback</a>
-            </li>
+
               <li class="nav-item">
               <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>

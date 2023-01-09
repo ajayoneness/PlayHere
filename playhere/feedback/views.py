@@ -41,4 +41,15 @@ def feed(request):
         fobj = feedback.objects.all().order_by("-id")
         return render(request,'feedback.html',{'fb':fobj,"yourfeed":yourfeed,"yourobj":yourobj})
     else:
-        return redirect("/")
+
+        if request.method == 'POST':
+            uname = request.POST['name']
+            userproblem = request.POST['userproblem']
+            if uname == "":
+                uname="Anonymous User"
+
+            fsav = feedback(uname=uname,mes=userproblem)
+            fsav.save()
+
+        fobj = feedback.objects.all().order_by("-id")
+        return render(request, 'feedback.html', {'fb': fobj })
