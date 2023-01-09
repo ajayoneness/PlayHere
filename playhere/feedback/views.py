@@ -42,6 +42,9 @@ def feed(request):
         return render(request,'feedback.html',{'fb':fobj,"yourfeed":yourfeed,"yourobj":yourobj})
     else:
 
+
+
+
         if request.method == 'POST':
             uname = request.POST['name']
             userproblem = request.POST['userproblem']
