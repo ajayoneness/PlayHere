@@ -9,8 +9,8 @@ body{
 }
 
 .card{
-    background-image: linear-gradient(to right, rgba(200,20,200,5), rgba(25,0,0,1));
-    box-shadow: 0px 2px 10px black; 
+    /*background-image: linear-gradient(to right, rgb(111 73 105), rgb(6 48 49));
+    box-shadow: 0px 2px 10px black; */
     padding: 50px;
     transition: 5s;
 }

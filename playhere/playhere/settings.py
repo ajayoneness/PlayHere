@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'result',
     'django_userforeignkey',
     'django_extensions',
+    'contactus',
 ]
 
 MIDDLEWARE = [
