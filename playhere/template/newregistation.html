@@ -1,6 +1,4 @@
-{% extends 'Home.html' %}
 
-{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +126,8 @@
 
 
 <body>
-    <div class="container">
+    <div class="container" style="margin-top: 10px;">
+        <a class="navbar-brand" style="color: white; font-weight: bold" href="{% url 'main'%}">Play<span style="color: darkcyan; font-weight: bold">Here</span></a>
 
         <div class="row">
 
@@ -203,6 +202,8 @@
                         
                     </div>
                     <code class="para" style="color:red; font-weight: 400px; " id="err"></code>
+                    <br><br>
+                    <p style="color:white;">if You are already registered click <a href="/#login">here</a> to login</p>
                     
                 </div>
 
@@ -651,4 +652,3 @@ anime.timeline({loop: true})
     
 </body>
 </html>
-{% endblock %}

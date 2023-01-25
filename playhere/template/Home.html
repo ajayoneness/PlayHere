@@ -75,9 +75,10 @@
             </li>
 
              {% if aobj == "ajay" %}
-            <li class="nav-item" style="position:relative; left:50%; ">
-
-              <img width="40px" src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g">
+            <li class="nav-item" style="margin-left:10px; ">
+                <a href="{% url 'profile' %}">
+                    <img width="40px" src="https://media4.giphy.com/media/LOnt6uqjD9OexmQJRB/giphy.gif?cid=ecf05e47ckn8bwbeytlldw5tvxlsmz5mgid4oq3kw2wlropq&rid=giphy.gif&ct=g">
+                </a>
             </li>
 
               {% else %}
@@ -87,8 +88,8 @@
             </li>
               {% endif %}
 
-              <li class="nav-item" style="position:relative; left:50%; font-weight : bold; font-size : 20px; top: -5px; ">
-              <a class="nav-link"   href="{% url 'profile' %}">{{user.username}}</a>
+              <li class="nav-item" style=" float:right; font-weight : bold; font-size : 20px; top: -5px; ">
+              <a  class="nav-link"   href="{% url 'profile' %}">{{user.username}}</a>
             </li>
 
 <!--              <li class="nav-item" style="position:relative; left:50%; font-weight : bold; font-size : 20px; top: -5px; color : red;">-->
@@ -171,7 +172,7 @@
           <div class="col-lg-8">
             <div class="card-body py-5 px-md-5">
 
-                <div class = "anjali1">
+                <div class = "anjali1" style="background-color:transparent;">
                     {% for message in messages %}
                     <h3>{{message}}</h3>
                     {% endfor %}
@@ -183,14 +184,16 @@
                   {% csrf_token %}
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input name="user_name" placeholder="User Name" type="text" id="form2Example1" class="form-control" />
-                  <label class="form-label" for="form2Example1">User Name </label>
+                    <label class="form-label" for="form2Example1">Email/User Name </label>
+                  <input name="user_name" placeholder="Email/User Name" type="text" id="form2Example1" class="form-control" />
+
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
+                    <label class="form-label" for="form2Example2">Password</label>
                   <input name="password" placeholder="Password" type="password" id="form2Example2" class="form-control" />
-                  <label class="form-label" for="form2Example2">Password</label>
+
                 </div>
 
                 <!-- 2 column grid layout for inline styling -->

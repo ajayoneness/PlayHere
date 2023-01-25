@@ -10,9 +10,13 @@ def main(request):
     request.session['countt'] = 0
     request.session['tenque'] = {}
     if request.method == 'POST':
-        uname = request.POST['user_name']
+        uname = (request.POST['user_name']).lower()
         password = request.POST['password']
         text = request.POST['hsec']
+
+        if '.' in uname and '@' in uname:
+            uname = User.objects.get(email=uname).username
+
         user = auth.authenticate(username=uname,password=password)
 
         if user is not None:
