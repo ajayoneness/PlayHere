@@ -26,7 +26,7 @@ def register(request):
         else:
             messages.info(request, 'both password are not save')
 
-    return render(request,"register.html")
+    return render(request,"newregistation.html")
 
 
 # def login(request):

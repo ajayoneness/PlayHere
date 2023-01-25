@@ -26,9 +26,11 @@ INSTALLED_APPS = [
     'challenge',
     'feedback',
     'result',
+    'api',
     'django_userforeignkey',
     'django_extensions',
     'contactus',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -124,5 +126,12 @@ GRAPH_MODELS = {
     "group_models" : True,
 
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'playherequiz@gmail.com'
+EMAIL_HOST_PASSWORD = 'pryfbexrmwwtkrzz'
 
 

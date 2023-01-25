@@ -15,6 +15,7 @@ urlpatterns = [
     path('result/',include('result.urls')),
     path('certificate/',include('Certificate.urls')),
     path('contactus/',include('contactus.urls')),
+    path('api/',include('api.urls')),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
