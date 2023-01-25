@@ -6,8 +6,8 @@ def register(request):
     if request.method == "POST":
         fname = request.POST['first_name']
         lname = request.POST['last_name']
-        uname = request.POST['user_name']
-        email = request.POST['email']
+        uname = (request.POST['user_name']).lower()
+        email = (request.POST['email']).lower()
         pass1 = request.POST['password']
         pass2 = request.POST['repassword']
 
