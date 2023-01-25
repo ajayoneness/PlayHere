@@ -14,8 +14,12 @@ def main(request):
         password = request.POST['password']
         text = request.POST['hsec']
 
-        if '.' in uname and '@' in uname:
-            uname = User.objects.get(email=uname).username
+        if '.com' in uname and '@' in uname:
+            try:
+                uname = User.objects.get(email=uname).username
+            except:
+                messages.info(request, "This Email is not registered")
+                return redirect("/#login")
 
         user = auth.authenticate(username=uname,password=password)
 

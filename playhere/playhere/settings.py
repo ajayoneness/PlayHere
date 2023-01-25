@@ -62,6 +62,8 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'playhere.wsgi.application'
 
 
