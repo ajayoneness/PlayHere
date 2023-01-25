@@ -17,5 +17,5 @@ def userapi(request):
     })
 
 def test(request):
-    return render(request,"newregistation.html")
+    return render(request,"newregistation1.html")
 
