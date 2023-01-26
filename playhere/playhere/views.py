@@ -14,7 +14,7 @@ def main(request):
         password = request.POST['password']
         text = request.POST['hsec']
 
-        if '.com' in uname and '@' in uname:
+        if '.' in uname and '@' in uname:
             try:
                 uname = User.objects.get(email=uname).username
             except:
