@@ -6,7 +6,8 @@ from django.http import FileResponse
 
 def downloadApp(request):
     BASE_DIR = Path(__file__).resolve().parent.parent
-    file_path = os.path.join(BASE_DIR, 'media/app/app-release.apk')
+    file_path = os.path.join(BASE_DIR, 'media','app','app-release.apk')
+    print(file_path)
     return render(request,'downloadapp.html',{'file_path': file_path})
 
 
