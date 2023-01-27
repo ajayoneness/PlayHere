@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Download</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .ro{
+            margin-top: 90px;
+            margin-bottom :27px;
+        }
+
+
+        .a{
+            border-radius: 30px;
+            border: 15px solid rgb(0, 0, 0);
+            position: relative;
+            left: 20%;
+        }
+
+        .bg{
+
+            margin-bottom: 20px;
+
+        }
+
+        body{
+            background:linear-gradient(45deg, rgb(46, 46, 46), rgb(18, 7, 43));
+            background-repeat: no-repeat;
+            background-size:contain;
+           
+        }
+        .txta{
+            color: azure;
+        }
+
+    </style>
+</head> 
+
+<body>
+
+    <div class="container bg" >
+        <a class="navbar-brand" style="  position: fixed; color: white; font-weight: bold" href="{% url 'main'%}">Play<span style="color: darkcyan; font-weight: bold">Here</span></a>
+        <div class="row">
+            
+            <div class="col-sm-12 col-md-6 ro" style="  text-align: center; overflow: hidden;">
+              <!-- image Slider  -->
+
+
+              <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner aaa" style=" ">
+                  <div class="carousel-item active">
+                      <img src="{% static 'app/25950fa6-6c46-45b6-a99e-1fc8a402c347.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'app/145bb036-0137-4e45-8eaf-b232e1eb4c8e.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'app/4df4fc85-55a9-4d89-970d-7a3ea4c533bd.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'app/5741fa4c-25a6-440a-b418-5be3f7f666b5.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'app/5a866cc3-afae-42e1-a154-7d3488d58bd4.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'app/ea2dfff9-5226-4d76-b200-a03e9e79b795.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="{% static 'app/976f59bb-aee5-4880-bfb5-3a7775a9e4d7.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+
+                  <div class="carousel-item">
+                    <img src="{% static 'app/7dff5f53-1dc2-4edd-8a73-6e9bfee625cd.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+
+                  <div class="carousel-item">
+                    <img src="{% static 'app/7e6cc559-0ec5-46ed-8200-a28c024c9b02.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+
+                  <div class="carousel-item">
+                    <img src="{% static 'app/9640fede-73b8-404d-8453-db988b16aadd.jpg' %}" class="d-block a" width="230px" alt="...">
+                  </div>
+
+
+                </div>
+              </div>
+
+
+            <!-- slid End -->
+
+
+            </div>
+
+
+            <div class="col-sm-12 col-md-6" style="margin-top: 70px;  text-align: center;">
+
+                <img class="img-fluid mb-5" style="box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;"  width="230px" src="{% static 'img/P.png' %}">
+                <p class="mb-5 txta" style="font-weight : bold;">Download PlayHere Quiz Android App</p>
+                <a href="{% url 'download_file' file_path=file_path %}">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Crystal_Project_Download.png" width="150px">
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>    
+</body>
+</html>
