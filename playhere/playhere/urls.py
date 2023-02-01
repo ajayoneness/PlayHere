@@ -18,6 +18,7 @@ urlpatterns = [
     path('contactus/',include('contactus.urls')),
     path('api/',include('api.urls')),
     path('downloadapp/',include('downloadapp.urls')),
+    path('points/',include('points.urls')),
 
 ]
 

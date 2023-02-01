@@ -17,6 +17,45 @@
     color:red;
 
   }
+  .point{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    padding:5px;
+    border-radius : 10px;
+    background-color:rgb(251,176,123);
+    text-align:center;
+    padding-top:10px;
+  }
+  .point a{
+    text-decoration :none;
+    color :white;
+  }
+
+  .point:hover{
+    transition : 1s;
+    background-color:orange;
+    color :black;
+  }
+
+
+  .point1{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    padding:5px;
+    border-radius : 10px;
+    background-color:#4295f5;
+    text-align:center;
+    padding-top:10px;
+  }
+  .point1 a{
+    text-decoration :none;
+    color :white;
+  }
+
+  .point1:hover{
+    transition : 1s;
+    background-color:#0074fa;
+    color :black;
+  }
+
 
 </style>
 
@@ -47,38 +86,52 @@
                 <div class="col-md-8">
                   <div class="card-body p-4">
                     <div class="row pt-1">
-                      <div class="col-6 mb-3">
-                        <h1>Score</h1>
+
+                      <div class="col-12 m-3" >
+                        <button onclick="location.href = '/quiz/category'" style="position : relative;left:-20px;  top: -3px;"   class="btt">Let's Rock with PlayHere ➟ </button>
                       </div>
-                      <div class="col-6 mb-3" >
-
-                        <button onclick="location.href = '/quiz/category'" style="postion:relative; top:5px; left:-30px;" class="btt">Let's Play ➟ </button>
 
 
-                      </div>
+
+
                     </div>
                     <hr class="mt-0 mb-4">
                     <div class="row pt-1">
-                      <div class="col-6 mb-3">
-                        <h6>Points</h6>
-                        <p style="font-weight: bold; font-size: 25px">{{rank}}<p>
-                      </div>
-                      <div class="col-6 mb-3">
+
+
+                        <div class="col-5 m-2 point">
+                          <a href="{% url 'point' %}">
+                          <h6>Points</h6>
+                          <p style="font-weight: bold; font-size: 25px">{{rank}}<p>
+                          </a>
+                        </div>
+
+
+                      <div class="col-5 m-2 point">
+                        <a href="{% url 'point' %}">
                         <h6>Game Played</h6>
                         <p style="font-weight: bold; font-size: 25px">{{pobjcount}}</p>
+                        </a>
                       </div>
                     </div>
-                    <h6>Projects</h6>
-                    <hr class="mt-0 mb-4">
+
+
                     <div class="row pt-1">
-                      <div class="col-6 mb-3">
+
+                      <div class="col-5 m-2 point1">
+                        <a href="#">
                         <h6>Recent</h6>
                         <p style="font-weight: bold; font-size: 15px">{{pobj.category}}</p>
+                        </a>
                       </div>
-                      <div class="col-6 mb-3">
+
+                      <div class="col-5 m-2 point1">
+                        <a href="#">
                         <h6>Most Played</h6>
                         <p style="font-weight: bold; font-size: 15px">{{mostplay}}</p>
+                        </a>
                       </div>
+
                     </div>
                   </div>
                 </div>

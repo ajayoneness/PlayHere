@@ -1,0 +1,32 @@
+{% extends 'Home.html' %}
+
+{% block content %}
+   <div class="container">
+       <h1 style="margin-top : 50px;">POINTS REVIEW({{user.username}})</h1>
+
+       <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Category</th>
+              <th scope="col">Points</th>
+              <th scope="col">TimeTaken</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          {% for i in profileobj %}
+            <tr>
+              <th scope="row">{{i.datetime}}</th>
+              <td>{{i.category}}</td>
+              <td>{{i.score}}</td>
+              <td>{{i.timetkaen}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+   </div>
+        
+
+{% endblock %}
