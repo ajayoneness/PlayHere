@@ -343,8 +343,8 @@ def loaddata(request):
         data = pd.read_excel(f"{path}")
         print(data)
         for i in range(0,len(data)):
-            #uploadquestion = questions(question = data['question'][i],subquestion=data['subquestion'][i],option1=data['option1'][i],option2=data['option2'][i],option3=data['option3'][i],option4=data['option4'][i],answer = data['answer'][i],category = data['category'][i],topic = data['topic'][i])
-            #uploadquestion.save()
+            uploadquestion = questions(question = data['question'][i],subquestion=data['subquestion'][i],option1=data['option1'][i],option2=data['option2'][i],option3=data['option3'][i],option4=data['option4'][i],answer = data['answer'][i],category = data['category'][i],topic = data['topic'][i])
+            uploadquestion.save()
             pass
         uc="upload completed"
         return render(request, 'loadquestion.html',{'mes':uc})
