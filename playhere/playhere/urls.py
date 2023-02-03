@@ -19,6 +19,7 @@ urlpatterns = [
     path('api/',include('api.urls')),
     path('downloadapp/',include('downloadapp.urls')),
     path('points/',include('points.urls')),
+    path('add/',include('addquestion.urls')),
 
 ]
 

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'api',
     'points',
     'resetPassword',
+    'addquestion',
     'downloadapp',
     'django_userforeignkey',
     'django_extensions',
