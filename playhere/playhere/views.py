@@ -4,6 +4,7 @@ from quiz.models import addmore
 from django.contrib.auth.models import User,auth
 
 def main(request):
+    request.session['totaltimetaken'] = 0
     request.session['lis'] = 0
     request.session['tlis'] = 0
     request.session['count'] = 1

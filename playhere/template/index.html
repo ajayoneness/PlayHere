@@ -93,7 +93,10 @@
               {% else %}
 
                 {% if q_obj.subquestion != '' %}
-                <h5 class="card-title txt">{{q_obj.question}}</h5><h5 style="color:white; text-shadow:0px 0px 10px black;  padding:5px; background-color:rgba(0,0,0,.2); border-radius:5px; "><pre>{{q_obj.subquestion}}</pre></h5><br>
+                <h5 class="card-title txt">{{q_obj.question}}</h5>
+                        {% if q_obj.subquestion != 'nan' %}
+                            <h5 style="color:white; text-shadow:0px 0px 10px black;  padding:5px; background-color:rgba(0,0,0,.2); border-radius:5px; "><pre>{{q_obj.subquestion}}</pre></h5><br>
+                        {% endif %}
                 {% else %}
                 <h5 class="card-title txt">{{q_obj.question}}</h5><br>
                 {% endif %}
@@ -172,7 +175,7 @@
         document.getElementById('tt').innerHTML = "Time Taken = "+tim+" sec";
         document.getElementById('ca').innerHTML = "Correct Answer = "+dic[ans] ;
         document.getElementById('ca').style.color = "limegreen";
-        document.getElementById('time_taken').value = 0;
+        document.getElementById('time_taken').value = tim;
 
         popup.classList.add('openpopup');
     }

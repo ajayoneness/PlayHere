@@ -132,6 +132,10 @@ def ques(request,idd):
         except:
             select =''
             ti = 0
+        request.session['totaltimetaken'] += int(ti)
+        print(f"live time taken ---> {ti}")
+        print(f"total time taken ---> {request.session['totaltimetaken']}")
+
         print(select)
 
         uniquekey = {
@@ -262,10 +266,11 @@ def result(request,slis):
         ucategory = request.session['category']
         uscore = slis
         request.session['uscore']=uscore
+        print("user score --> ",uscore)
         emo = emoji[uscore]
         #comming soon
         utimetaken = request.session['ttime']
-        rank = ((uscore*100)-(utimetaken))/100
+        rank = ((uscore*1000)-(utimetaken))/100
 
         tq = request.session['tenque']
 
@@ -343,7 +348,12 @@ def loaddata(request):
         data = pd.read_excel(f"{path}")
         print(data)
         for i in range(0,len(data)):
-            uploadquestion = questions(question = data['question'][i],subquestion=data['subquestion'][i],option1=data['option1'][i],option2=data['option2'][i],option3=data['option3'][i],option4=data['option4'][i],answer = data['answer'][i],category = data['category'][i],topic = data['topic'][i])
+            if data['subquestion'][i] == "nan":
+                subdata = ""
+            else:
+                subdata = data['subquestion'][i]
+
+            uploadquestion = questions(question = data['question'][i],subquestion=subdata,option1=data['option1'][i],option2=data['option2'][i],option3=data['option3'][i],option4=data['option4'][i],answer = data['answer'][i],category = data['category'][i],topic = data['topic'][i])
             uploadquestion.save()
             pass
         uc="upload completed"

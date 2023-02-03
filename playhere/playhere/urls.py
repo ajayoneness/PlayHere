@@ -20,6 +20,7 @@ urlpatterns = [
     path('downloadapp/',include('downloadapp.urls')),
     path('points/',include('points.urls')),
     path('add/',include('addquestion.urls')),
+    path('adminview/',include('adminview.urls')),
 
 ]
 
