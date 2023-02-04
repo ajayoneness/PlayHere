@@ -143,3 +143,11 @@ EMAIL_HOST_USER = 'playherequiz@gmail.com'
 EMAIL_HOST_PASSWORD = 'pryfbexrmwwtkrzz'
 
 
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES' : ('rest_framework.renderers.JSONRenderer',)
+
+}
+
+
