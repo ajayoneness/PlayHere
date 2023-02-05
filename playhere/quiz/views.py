@@ -170,7 +170,8 @@ def ques(request,idd):
 
 #correct Answer ------------>>>>>>>>>>>
                 request.session['count'] += 1
-                allpoints(username=request.user.username, points=1, timetaken=int(request.session['totaltimetaken']),
+                if request.user.is_authenticated:
+                    allpoints(username=request.user.username, points=1, timetaken=int(request.session['totaltimetaken']),
                           category=request.session['category'], gamename="").save()
                 print('correct answer')
                 if request.session['count'] >= 11:
@@ -182,7 +183,6 @@ def ques(request,idd):
                     print(sumlis)
                     request.session['lis'] = 0
                     request.session['tlis'] = 0
-                    print(uniquekey[sumlis])
                     print(f"ten question dic : {request.session['tenque']}")
                     return redirect(f'/quiz/result/{sumlis}')
 
@@ -218,7 +218,9 @@ def ques(request,idd):
                 request.session['count'] += 1
                 print('incorrect Answer')
                 print("live time taken",request.session['tlis'])
-                allpoints(username=request.user.username,points=float(0.0),timetaken=int(request.session['totaltimetaken']),category=request.session['category'],gamename="").save()
+
+                if request.user.is_authenticated:
+                    allpoints(username=request.user.username,points=float(0.0),timetaken=int(request.session['totaltimetaken']),category=request.session['category'],gamename="").save()
 
                 if request.session['count'] >= 11:
                     request.session['ttime'] = request.session['tlis']
@@ -227,7 +229,6 @@ def ques(request,idd):
                     sumlis = request.session['lis']
                     print("lis session : ",sumlis)
                     request.session['lis'] = 0
-                    # print(uniquekey[sumlis])
                     return redirect(f'/quiz/result/{sumlis}')
 
 
