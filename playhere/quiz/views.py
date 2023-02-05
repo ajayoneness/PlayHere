@@ -31,8 +31,8 @@ def profile1(request):
     # request.session['count']=0
     request.session['tenque'] = {}
 
-    print(type(request.session['lis']))
-    print(request.session['lis'])
+    # print(type(request.session['lis']))
+    # print(request.session['lis'])
     # lis.clear()
     # tlis.clear()
     rank = 0
@@ -106,7 +106,7 @@ def cate(request):
 
 
 def ques(request,idd):
-    print("list : ",request.session['lis'])
+    # print("list : ",request.session['lis'])
     print('count session : ', request.session['count'])
     countt =0
     R1=random.randint(20,200)

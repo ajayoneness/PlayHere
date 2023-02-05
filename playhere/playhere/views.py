@@ -10,6 +10,7 @@ def main(request):
     request.session['count'] = 1
     request.session['countt'] = 0
     request.session['tenque'] = {}
+    request.session['totaltimetaken']=0
     if request.method == 'POST':
         uname = (request.POST['user_name']).lower()
         password = request.POST['password']
