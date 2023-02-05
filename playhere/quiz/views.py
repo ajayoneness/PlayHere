@@ -4,6 +4,7 @@ import random
 from django.core.files.storage import FileSystemStorage
 from .helper import Data
 from result.models import fullresult
+from points.models import allpoints
 
 
 def fileHandel():
@@ -138,19 +139,7 @@ def ques(request,idd):
 
         print(select)
 
-        uniquekey = {
-            0: '345vcfhgjvgdfgh43564578',
-            1: '4356guyhgcxfdft56787',
-            2: '567ghvhmbkj678vgvbjgh',
-            3: '678yhjmbjhbjn7yigvhj78',
-            4: '65778uhbnuyfjgy78uyt7ugfvy7',
-            5: '567ytfhgnhbvhnhyut6u567',
-            6: '67yyujhnbhnhj78uuhbnb',
-            7: '657uhjmbjknbhg78u',
-            8: '54657uyughjnbvnjnhbn',
-            9: 'gyjukhbvghjbvg6757676j',
-            10:'6457678uygjkhg687yh',
-        }
+
 
 
         if select != '':
@@ -179,8 +168,10 @@ def ques(request,idd):
                 set[f"ya{request.session['count']}"] = int(select)
                 print(f" i am dict : {request.session['tenque']}")
 
-
+#correct Answer ------------>>>>>>>>>>>
                 request.session['count'] += 1
+                allpoints(username=request.user.username, points=1, timetaken=int(request.session['totaltimetaken']),
+                          category=request.session['category'], gamename="").save()
                 print('correct answer')
                 if request.session['count'] >= 11:
                     request.session['ttime'] = request.session['tlis']
@@ -223,9 +214,12 @@ def ques(request,idd):
                 set[f"ya{request.session['count']}"] = int(select)
                 print(f" i am dict : {request.session['tenque']}")
 
-
+# Incorrect Answer ------------>>>>>>>>>>>
                 request.session['count'] += 1
                 print('incorrect Answer')
+                print("live time taken",request.session['tlis'])
+                allpoints(username=request.user.username,points=float(0.0),timetaken=int(request.session['totaltimetaken']),category=request.session['category'],gamename="").save()
+
                 if request.session['count'] >= 11:
                     request.session['ttime'] = request.session['tlis']
                     print(request.session['tlis'])
