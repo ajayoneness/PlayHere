@@ -7,7 +7,9 @@ def register(request):
         fname = request.POST['first_name']
         lname = request.POST['last_name']
         uname = (request.POST['user_name']).lower()
+        uname = uname.strip()
         email = (request.POST['email']).lower()
+        email = email.strip()
         pass1 = request.POST['password']
         pass2 = request.POST['repassword']
 
@@ -29,7 +31,8 @@ def register(request):
     return render(request,"newregistation.html")
 
 
-# def login(request):
+def login(request):
+    return redirect('/#login')
 #     if request.method == 'POST':
 #         uname = request.POST['user_name']
 #         password = request.POST['password']
@@ -43,7 +46,8 @@ def register(request):
 #         else:
 #             messages.info(request,"invalid user")
 #
-#     return render(request,"Home.html")
+    #return render(request,"Home.html")
+
 
 def logout(request):
     auth.logout(request)

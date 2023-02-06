@@ -193,8 +193,49 @@
         }
 
         });
+
         $("#time").text(result.Data.length)
-        console.log("length of all points data : "+result.Data.length);
+        //console.log("result : "+result);
+        obj = result.Data;
+
+        let mySet = new Set();
+
+        obj.forEach(element => {
+            mySet.add(element.username)
+        });
+        console.log(mySet)
+
+
+
+
+
+        // const uniqueData = obj.reduce((unique, item) => {
+        //     const username = item.username
+        //     unique.forEach(element => {
+        //         if (element.username == username){
+        //             return unique
+        //         }                
+        //     });
+
+        //     return [...unique, item];
+        //     }, []); 
+
+        // const uniqueData = []
+        // obj.map(element => {
+        //     uniqueData.forEach(item =>{
+        //         if(item.username == element.username){
+        //             return uniqueData
+        //         }
+        //     })
+        //     return [...uniqueData,element]
+        // });
+        // console.log("unique : ",uniqueData)
+
+        //ackma 15 modern js
+        
+
+
+
 
 
 
@@ -211,7 +252,6 @@
 
         $("#cnt").text(result.Data.length)
         var revdata = result.Data.reverse()
-        console.log(revdata)
 
         for(i=0; i<=result.Data.length; i++){
 

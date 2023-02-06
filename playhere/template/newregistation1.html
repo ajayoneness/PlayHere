@@ -127,6 +127,7 @@
 
 <body>
     <div class="container">
+        <a class="navbar-brand" style=" position: fixed; color: white; font-weight: bold" href="{% url 'main'%}">Play<span style="color: darkcyan; font-weight: bold">Here</span></a>
 
         <div class="row">
 
@@ -160,7 +161,7 @@
 
                                     <div style="display:none; transition: 1s;" id=username class="mb-3">
                                         <span id="ucor" style="margin-top: 6px; margin-right: 5px; color:rgb(255, 0, 0)">➙</span>
-                                        <input type="text" placeholder=" UserName" name="user_name" id="user" class="col-11 form-control aj" autocomplete="off">
+                                        <input type="text"  placeholder=" UserName" name="user_name" id="user" class="col-11 form-control aj" autocomplete="off">
                                     </div>
 
                                     <div style="display:none; transition: 1s;" id=upassword class="mb-3">
@@ -228,6 +229,12 @@
 
         $( document ).ready(function() {
 
+
+
+
+
+
+
         //ajax calling
         var result
             var result;
@@ -266,6 +273,9 @@
                 $("#ucor").css("color", "red");
                 return false
             }
+
+
+
 
             else{
                 $("#err").text("")

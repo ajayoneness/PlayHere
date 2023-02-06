@@ -13,6 +13,7 @@ def main(request):
     request.session['totaltimetaken']=0
     if request.method == 'POST':
         uname = (request.POST['user_name']).lower()
+        uname = uname.strip()
         password = request.POST['password']
         text = request.POST['hsec']
 

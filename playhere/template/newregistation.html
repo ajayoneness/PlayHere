@@ -161,7 +161,7 @@
 
                                     <div style="display:none; transition: 1s;" id=username class="mb-3">
                                         <span id="ucor" style="margin-top: 6px; margin-right: 5px; color:rgb(255, 0, 0)">➙</span>
-                                        <input type="text" placeholder=" UserName" name="user_name" id="user" class="col-11 form-control aj" autocomplete="off">
+                                        <input type="text" placeholder=" UserName" name="user_name" id="user" class="col-11 form-control aj" onkeyup="nospaces(this)" autocomplete="off">
                                     </div>
 
                                     <div style="display:none; transition: 1s;" id=upassword class="mb-3">
@@ -642,6 +642,12 @@ anime.timeline({loop: true})
            return true;
         }
       }
+
+  function nospaces(t){
+      if(t.value.match(/\s/g)){
+        t.value=t.value.replace(/\s/g,'');
+      }
+    }
 
 
 
