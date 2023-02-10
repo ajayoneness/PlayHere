@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect
-from .models import profile,cat,questions,addmore
+from .models import profile,cat,questions,addmore,subcat
 import random
 from django.core.files.storage import FileSystemStorage
-from .helper import Data
 from result.models import fullresult
 from points.models import allpoints
 
@@ -92,6 +91,19 @@ def cate(request):
         c_val = request.POST['catbtn']
         request.session['category'] = c_val
 
+
+#Add sub category
+        sub = subcat.objects.filter(cat_name=request.session['category'])
+        if sub.count() != 0:
+            categ = cat.objects.filter(cat=sub[0].cat_name)
+            catege=set()
+            if categ[0].cat == request.session['category']:
+                for i in range(0,sub.count()):
+                    a=cat.objects.filter(cat=sub[i].subcat_name)[0]
+                    catege.add(a)
+                return render(request,'category.html',{'category':catege})
+
+
         total_cat = questions.objects.filter(category=request.session['category'])
         count = total_cat.count() - 1
         if count > 0:
@@ -134,10 +146,6 @@ def ques(request,idd):
             select =''
             ti = 0
         request.session['totaltimetaken'] += int(ti)
-        print(f"live time taken ---> {ti}")
-        print(f"total time taken ---> {request.session['totaltimetaken']}")
-
-        print(select)
 
 
 

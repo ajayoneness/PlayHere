@@ -33,6 +33,12 @@ class cat(models.Model):
     bg_image = models.TextField(blank=True)
 
 
+class subcat(models.Model):
+    cat_name = models.TextField()
+    subcat_name = models.TextField()
+
+
+
 class questions(models.Model):
     question = models.TextField(max_length=1000)
     subquestion = models.TextField(blank=True, max_length=1000)

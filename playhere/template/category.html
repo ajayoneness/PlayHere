@@ -2,6 +2,27 @@
 {% extends 'Home.html' %}
 
 {% block content %}
+
+
+<style>
+  .ajcard{
+    background:linear-gradient(to right, #8360c3, #2ebf91);;
+    border: 2px solid #555555;
+    border-radius: 4px;
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform .5s;
+    color:black;
+  }
+  .ajcard:hover{
+  background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
+  transform: translateZ(10px) rotateX(20deg) rotateY(20deg);
+
+  }
+
+
+</style>
     
 <!--  main category    -->
       
@@ -11,10 +32,11 @@
       <form method="post">
         {% csrf_token %}
       <div class="col">
-        <div class="{{i.bg_image}}">
+        <div class="card ajcard">
           <div class="card-body cb">
             <h5 class="card-title title" >{{i.cat}}</h5>
             <p class="card-text">{{i.c_bio}}</p>
+
               <input type="hidden" name ="catbtn" value="{{i.cat}}">
               <button type="submit" class="bt">➟</button>
           </div>
