@@ -2,10 +2,6 @@ from django.db import models
 from django_userforeignkey.models.fields import UserForeignKey
 from django.contrib.auth.models import User
 
-
-
-
-
 class profile(models.Model):
     user_id = UserForeignKey(auto_user_add=True)
     p_username = models.TextField()
@@ -24,7 +20,6 @@ class addmore(models.Model):
     address = models.CharField(max_length=225, null=True,blank=True)
     #website = models.URLField(max_length=100, null=True,blank=True)
     bio = models.CharField(max_length=225, null=True,blank=True)
-
 
 
 class cat(models.Model):

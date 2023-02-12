@@ -21,6 +21,7 @@ urlpatterns = [
     path('points/',include('points.urls')),
     path('add/',include('addquestion.urls')),
     path('adminview/',include('adminview.urls')),
+    path('codeajgpt/',include('codeAjGPT.urls')),
 
 ]
 

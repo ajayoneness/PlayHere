@@ -6,6 +6,11 @@ from points.models import allpoints
 
 
 
+class codeajgptSerializer(serializers.Serializer):
+    input_string = serializers.CharField(max_length=100)
+
+
+
 class testSerializer(serializers.ModelSerializer):
 
     class Meta:

@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'result',
     'api',
     'points',
+    'codeAjGPT',
     'resetPassword',
     'addquestion',
     'downloadapp',

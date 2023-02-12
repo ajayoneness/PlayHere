@@ -1,0 +1,84 @@
+<!--enoji Link : https://giphy.com/explore/emoji-sticker-->
+{% extends 'Home.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .imgg{
+        border-radius : 8px;
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    }
+</style>
+
+<!--  main category    -->
+<div class="container">
+    <h1 class="text-center mt-5">codeAj GPT</h1>
+    <p id="question" class="mt-5"></p>
+    <img class="imgg" src="https://media.tenor.com/kiWx2VPJmXkAAAAC/wave-frequency.gif" width="100%" height="200px">
+    <p id="answer"></p>
+    <div class="button">
+      <button id="start" class="btn m-3"> start</button>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+ 
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+$(document).ready(function() {
+
+   function speak(text) {
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+
+      const femaleVoice = synth.getVoices().find(voice => voice.gender === 'female');
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+
+      synth.speak(utterance);
+    }
+
+
+
+  $("#start").click(function(){
+    recognition.start();
+    recognition.onresult = function(event) {
+    const speechToText = event.results[0][0].transcript;
+    console.log(speechToText);
+    $("#question").text(speechToText)
+
+    var inputdata = {};
+		inputdata['input_string']= speechToText;
+
+    $.ajax({
+			url: "http://127.0.0.1:8000/api/codeajgptapi/",
+			type: 'POST',
+		  contentType: "application/json; charset=utf-8",
+			data: JSON.stringify(inputdata),
+			async: true,
+			success: function(result){
+				console.log(result['reversed_string']);
+                $("#answer").text(result['reversed_string']);
+                speak(result['reversed_string'])
+
+			}
+		});
+
+
+  };
+  })
+});
+
+
+
+
+
+
+</script>
+
+
+{% endblock %}

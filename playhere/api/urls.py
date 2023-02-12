@@ -9,7 +9,8 @@ urlpatterns = [
     path("feedbackapi/",views.feedbackapi, name='feedbackapi'),
     path("profileapi/",views.profileapi, name='profileapi'),
     path("pointsapi/",views.pointsapi, name='pointsapi'),
-    path("test/",views.test,name="test")
+    path("test/",views.test,name="test"),
+    path('codeajgptapi/', views.codeajgptAPI.as_view(), name='codeajgptapi'),
 ]
 
 if settings.DEBUG:
