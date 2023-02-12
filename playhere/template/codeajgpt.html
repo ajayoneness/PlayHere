@@ -55,9 +55,9 @@ $(document).ready(function() {
 		inputdata['input_string']= speechToText;
 
     $.ajax({
-			url: "http://127.0.0.1:8000/api/codeajgptapi/",
+			url: "{% url 'codeajgptapi' %}",
 			type: 'POST',
-		  contentType: "application/json; charset=utf-8",
+		    contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(inputdata),
 			async: true,
 			success: function(result){

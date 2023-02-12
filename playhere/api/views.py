@@ -16,7 +16,7 @@ class codeajgptAPI(APIView):
         if serializer.is_valid():
             input_string = serializer.data.get('input_string')
             import openai
-            openai.api_key = "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"
+            openai.api_key = "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"
             completion = openai.Completion.create(engine="text-davinci-003", prompt=input_string, max_tokens=1000)
             output_string = completion.choices[0]['text']
             return Response({'reversed_string': output_string})
