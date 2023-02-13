@@ -93,20 +93,12 @@ $(document).ready(function() {
 			success: function(result){
 				console.log(result['reversed_string']);
                 $("#answer").text(result['reversed_string']);
-                speak(result['reversed_string'])
-                
-               
+                speak(result['reversed_string'])      
 			}
 		});
-
-
   };
   })
 });
-
-
-
-
 
 
 </script>
