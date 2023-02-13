@@ -19,7 +19,8 @@
     <img class="imgg" src="https://media.tenor.com/kiWx2VPJmXkAAAAC/wave-frequency.gif" width="100%" height="200px">
     <p id="answer"></p>
     <div class="button">
-      <button id="start" class="btn m-3"> start</button>
+      <button id="start" class="btn m-3"> Start</button>
+      <button id="stop" class="btn m-3"> Stop</button>
     </div>
 </div>
 
@@ -31,6 +32,13 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 const recognition = new SpeechRecognition();
 
 $(document).ready(function() {
+  localapikey = localStorage.getItem('api_key')
+    if(localapikey != ""){
+      $("#apikey").val(localapikey)
+    }
+    
+
+
 
    function speak(text) {
     var speech = new SpeechSynthesisUtterance();
@@ -51,6 +59,10 @@ $(document).ready(function() {
         $("#question").text("")
       };
 
+    $('#stop').click(function() {
+        window.speechSynthesis.cancel();
+    });
+
     window.speechSynthesis.speak(speech);
     }
 
@@ -62,14 +74,18 @@ $(document).ready(function() {
     const speechToText = event.results[0][0].transcript;
     console.log(speechToText);
     $("#question").text(speechToText)
-    console.log($("#apikey").val)
+    api=$("#apikey").val()
+    if (api !=""){
+      localStorage.setItem('api_key',api)
+    }
+    
 
     var inputdata = {};
 		inputdata['input_string']= speechToText;
-		inputdata['api_key']= $("#apikey").val();
+		inputdata['api_key']= api;
 
     $.ajax({
-			url: "http://127.0.0.1:8000/api/codeajgptapi/",
+			url: "{% url 'codeajgptapi' %}",
 			type: 'POST',
 		  contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(inputdata),
