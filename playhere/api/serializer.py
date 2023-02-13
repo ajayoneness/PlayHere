@@ -8,6 +8,7 @@ from points.models import allpoints
 
 class codeajgptSerializer(serializers.Serializer):
     input_string = serializers.CharField(max_length=100)
+    api_key = serializers.CharField(max_length=250)
 
 
 

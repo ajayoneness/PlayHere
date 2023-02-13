@@ -12,7 +12,9 @@
 
 <!--  main category    -->
 <div class="container">
+
     <h1 class="text-center mt-5">codeAj GPT</h1>
+    <input type="text" id="apikey" class="form-control">
     <p id="question" class="mt-5"></p>
     <img class="imgg" src="https://media.tenor.com/kiWx2VPJmXkAAAAC/wave-frequency.gif" width="100%" height="200px">
     <p id="answer"></p>
@@ -31,15 +33,25 @@ const recognition = new SpeechRecognition();
 $(document).ready(function() {
 
    function speak(text) {
-      const synth = window.speechSynthesis;
-      const utterance = new SpeechSynthesisUtterance(text);
+    var speech = new SpeechSynthesisUtterance();
+    speech.text = text;
+    speech.lang = 'en-US';
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 2;
+    var voices = window.speechSynthesis.getVoices();
+    var femaleVoice = voices.filter(function(voice) {
+      return voice.gender === 'female';
+    })[0];
 
-      const femaleVoice = synth.getVoices().find(voice => voice.gender === 'female');
-      if (femaleVoice) {
-        utterance.voice = femaleVoice;
-      }
+    speech.voice = femaleVoice;
 
-      synth.speak(utterance);
+    speech.onend = function(event) {
+        $("#start").click()
+        $("#question").text("")
+      };
+
+    window.speechSynthesis.speak(speech);
     }
 
 
@@ -50,21 +62,24 @@ $(document).ready(function() {
     const speechToText = event.results[0][0].transcript;
     console.log(speechToText);
     $("#question").text(speechToText)
+    console.log($("#apikey").val)
 
     var inputdata = {};
 		inputdata['input_string']= speechToText;
+		inputdata['api_key']= $("#apikey").val();
 
     $.ajax({
-			url: "{% url 'codeajgptapi' %}",
+			url: "http://127.0.0.1:8000/api/codeajgptapi/",
 			type: 'POST',
-		    contentType: "application/json; charset=utf-8",
+		  contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(inputdata),
 			async: true,
 			success: function(result){
 				console.log(result['reversed_string']);
                 $("#answer").text(result['reversed_string']);
                 speak(result['reversed_string'])
-
+                
+               
 			}
 		});
 
