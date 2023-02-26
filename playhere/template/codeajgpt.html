@@ -8,13 +8,32 @@
         border-radius : 8px;
         box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     }
+
+    .sel{
+      background-color: rgb(0, 128, 94);
+      color:white;
+      width: 100px ;
+      height: 30px;
+      border:none;
+    }
 </style>
 
 <!--  main category    -->
 <div class="container">
 
-    <h1 class="text-center mt-5">codeAj GPT</h1>
-    <input type="text" id="apikey" class="form-control">
+  <div class="row">
+    <div class="col-sm-9 col-md-9">
+      <h1 class="text-center mt-5">codeAj<span style="color:darkgreen; font-weight:bold;">GPT</span></h1>
+    </div>
+    <div class="col-sm-3 col-md-3">
+      <select class="sel mt-5" name="language" id="lang">
+        <option value="english">English</option>
+        <option value="hindi">Hindi</option>
+      </select>
+    </div>
+  </div>
+    
+    <input type="text" id="apikey" style="display:none;" class="form-control">
     <p id="question" class="mt-5"></p>
     <img class="imgg" src="https://media.tenor.com/kiWx2VPJmXkAAAAC/wave-frequency.gif" width="100%" height="200px">
     <p id="answer"></p>
@@ -27,16 +46,19 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
- 
+
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
 $(document).ready(function() {
   localapikey = localStorage.getItem('api_key')
     if(localapikey != ""){
-      $("#apikey").val(localapikey)
+      $("#apikey").val("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")
     }
+
     
+    
+
 
 
 
@@ -46,13 +68,9 @@ $(document).ready(function() {
     speech.lang = 'en-US';
     speech.volume = 1;
     speech.rate = 1;
-    speech.pitch = 2;
-    var voices = window.speechSynthesis.getVoices();
-    var femaleVoice = voices.filter(function(voice) {
-      return voice.gender === 'female';
-    })[0];
-
-    speech.voice = femaleVoice;
+    speech.pitch = 1;
+    var voices = speechSynthesis.getVoices();
+    console.log(voices)
 
     speech.onend = function(event) {
         $("#start").click()
@@ -68,7 +86,61 @@ $(document).ready(function() {
 
 
 
+    function speakHindi(text){
+
+      if ('speechSynthesis' in window) {
+			var speechSynth = window.speechSynthesis;
+			//var speakButton = document.getElementById('start');
+			
+				// Create a new instance of SpeechSynthesisUtterance
+				var msg = new SpeechSynthesisUtterance();
+
+        msg.onend = function(event) {
+        $("#start").click()
+        $("#question").text("")
+      };
+
+				// Set the English text to be spoken
+				var englishText = text;
+				msg.text = englishText;
+
+				// Use the Google Translate API to translate the text to Hindi
+				var translateUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=hi&dt=t&q=" + encodeURIComponent(englishText);
+				fetch(translateUrl)
+					.then(function(response) {
+						return response.json();
+					})
+					.then(function(json) {
+						var hindiText = json[0][0][0];
+
+						// Select a Hindi voice
+						var voices = speechSynthesis.getVoices();
+						for (var i = 0; i < voices.length; i++) {
+							if (voices[i].lang === 'hi-IN') {
+								msg.voice = voices[i];
+								break;
+							}
+						}
+
+						// Speak the translated text in Hindi
+						msg.text = hindiText;
+						msg.addEventListener('boundary', function(event) {
+							// Ignore word boundary events triggered by punctuation
+							if (event.charIndex > 0 && /[^\s]/.test(hindiText[event.charIndex - 1])) {
+								speechSynth.resume();
+							}
+						});
+						speechSynth.speak(msg);
+					});
+      } else {
+        console.log("The Web Speech API is not supported in this browser.");
+      }
+
+    }
+
+
   $("#start").click(function(){
+    const langu = $('#lang').find(":selected").text();
     recognition.start();
     recognition.onresult = function(event) {
     const speechToText = event.results[0][0].transcript;
@@ -78,11 +150,19 @@ $(document).ready(function() {
     if (api !=""){
       localStorage.setItem('api_key',api)
     }
-    
 
-    var inputdata = {};
+
+      var inputdata = {};
 		inputdata['input_string']= speechToText;
 		inputdata['api_key']= api;
+    if (langu == "Hindi"){
+      console.log("hindi 150 words")
+      inputdata['no_of_words']= 100;
+    }
+    if (langu == "English"){
+      inputdata['no_of_words']= 1000;
+    }
+    
 
     $.ajax({
 			url: "{% url 'codeajgptapi' %}",
@@ -93,12 +173,29 @@ $(document).ready(function() {
 			success: function(result){
 				console.log(result['reversed_string']);
                 $("#answer").text(result['reversed_string']);
-                speak(result['reversed_string'])      
+
+                console.log(langu)
+                if (langu == 'English'){
+                  speak(result['reversed_string'])
+                }
+                if (langu == 'Hindi'){
+                  str = result['reversed_string'].replace(/[^a-zA-Z0-9,]/g, " ")
+                  console.log(str)
+                  speakHindi(str)
+                }
+
+                
 			}
 		});
+
+
   };
   })
 });
+
+
+
+
 
 
 </script>
