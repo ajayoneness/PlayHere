@@ -19,6 +19,7 @@
 </style>
 
 <!--  main category    -->
+
 <div class="container">
 
   <div class="row">
@@ -49,18 +50,13 @@
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
+const api_key = 'non'
 
 $(document).ready(function() {
   localapikey = localStorage.getItem('api_key')
     if(localapikey != ""){
-      $("#apikey").val("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")
+      $("#apikey").val(api_key)
     }
-
-    
-    
-
-
-
 
    function speak(text) {
     var speech = new SpeechSynthesisUtterance();
