@@ -14,6 +14,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -28,10 +29,13 @@ INSTALLED_APPS = [
     'api',
     'points',
     'codeAjGPT',
+    'Certificate',
+    'eplayhere',
     'resetPassword',
     'addquestion',
     'downloadapp',
     'adminview',
+    'runtime',
     'django_userforeignkey',
     'django_extensions',
     'contactus',
@@ -69,7 +73,8 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'playhere.wsgi.application'
+#WSGI_APPLICATION = 'playhere.wsgi.application'
+ASGI_APPLICATION = 'playhere.asgi.application'
 
 
 # Database

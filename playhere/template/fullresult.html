@@ -101,7 +101,8 @@
     <input type="text" id="apikey" style="display:none;" class="form-control">
 
     {% for i in data %}
-    <p class="resul">
+    <div class="resul">
+    <p class="">
         <h5 class="txt">QN{{ forloop.counter }}. {{i.0}}</h5>
         <hr>
         <h5 style="color:white; text-shadow:0px 0px 10px black;  padding:5px; background-color:rgba(0,0,0,.2); border-radius:5px; "><pre>{{i.1}}</pre></h5><br>
@@ -161,11 +162,17 @@
 
         </p>
 
-        <input type="button" class="btn" onclick="learnmore({{i}})" value="learn more">
+        <button onclick="lem({{i}})"> Learn More </button>
+
+
+
+
+
         <p class="solution">
 
         </p>
 
+        </p>
     </div>
 
 
@@ -177,43 +184,58 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
-$(document).ready(function() {
-  localapikey = localStorage.getItem('api_key')
-    if(localapikey != ""){
-      $("#apikey").val("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")
-    }
+function lem(q)
+{
+        alert(q)
 
-
-
-
-    function learnmore(question){
-        ques = question[0]+"\n"+question[1]
-        api=$("#apikey").val()
-        if (api !=""){
-          localStorage.setItem('api_key',api)
-        }
-
-          var inputdata = {};
-		inputdata['input_string']= ques;
+         var inputdata = {};
+		inputdata['input_string']= q;
 		inputdata['api_key']= api;
 
-    $.ajax({
+        $.ajax({
 			url: "{% url 'codeajgptapi' %}",
 			type: 'POST',
-		  contentType: "application/json; charset=utf-8",
+		    contentType: "application/json; charset=utf-8",
 			data: JSON.stringify(inputdata),
 			async: true,
 			success: function(result){
 				console.log(result['reversed_string']);
-                $("#answer").text(result['reversed_string']);
-                speak(result['reversed_string'])
 			}
 		});
+}
 
 
-    }
+$(document).ready(function() {
 
-  }
+
+  //localapikey = localStorage.getItem('api_key')
+  //  if(localapikey != ""){
+    //  $("#apikey").val("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")
+   // }
+
+
+
+
+
+
+
+       // ques = question[0]+"\n"+question[1]
+       // api=$("#apikey").val()
+        //if (api !=""){
+          //localStorage.setItem('api_key',api)
+
+          alert(question)
+
+
+
+
+
+
+
+
+    //}
+
+  })
 
 
 </script>

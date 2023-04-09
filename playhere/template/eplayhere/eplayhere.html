@@ -1,0 +1,579 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>EPlayHere</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'eplayhere/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'eplayhere/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'eplayhere/css/style.css' %}" rel="stylesheet">
+<!--    css part -->
+    <style>
+        #all{
+            margin-top : 70px;
+            margin-bottom : 70px;
+            box-shadow : 2px 4px 10px black;
+        }
+        #all th{
+        color: white;
+        background-color : gray;
+
+        }
+        #all th,td{
+            box-shadow : 1px 2px 5px black;
+            margin : 2px;
+
+        }
+        .form {
+          border: 3px solid #f1f1f1;
+          padding : 30px;
+        }
+
+        /* Full-width inputs */
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        .login {
+          background-color: #04AA6D;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+
+        /* Add a hover effect for buttons */
+        button:hover {
+          opacity: 0.8;
+        }
+
+        /* Extra style for the cancel button (red) */
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+        }
+
+        /* Avatar image */
+        img.avatar {
+          width: 40%;
+          border-radius: 50%;
+        }
+
+        /* Add padding to containers */
+        .container {
+          padding: 16px;
+        }
+
+        /* The "Forgot password" text */
+        span.psw {
+          float: right;
+          padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+            display: block;
+            float: none;
+          }
+          .cancelbtn {
+            width: 100%;
+          }
+        }
+        .create{
+            text-align : center;
+            color : white;
+            background-color : green;
+        }
+        .create:hover{
+            background-color : gray;
+            color : white;
+            box-shadow : 4px 8px 20px black;
+        }
+        #navbarDropdown{
+        position :relative;
+        left : 350%;
+        }
+
+        body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+    </style>
+
+
+
+
+
+
+
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid">
+        <div class="row align-items-center py-2 px-lg-5">
+            <div class="col-lg-4">
+                <a href="" class="navbar-brand d-none d-lg-block">
+                    <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">EPlay</span>Here</h1>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0 mb-3">
+        <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
+            <a href="http://127.0.0.1:8000/" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-5 text-uppercase"><span class="text-primary">EPlay</span>Here</h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="http://127.0.0.1:8000/" class="nav-item nav-link active">Home</a>
+
+                </div>
+                <div class="input-group ml-auto" style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control" placeholder="Keyword">
+                    <div class="input-group-append">
+                        <button class="input-group-text text-secondary"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+{% block content %}
+
+    <!-- Top News Slider Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="owl-carousel owl-carousel-2 carousel-item-3 position-relative">
+
+        <!--  it can show only five latest  news -->
+
+                <div class="d-flex">
+                    <img src="https://www.insightssuccess.in/wp-content/uploads/2020/12/785054-ecommerce-istock-020119.jpg" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
+                        <a class="text-secondary font-weight-semi-bold" href="#">Playhere Quiz App</a>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <img src="https://www.insightssuccess.in/wp-content/uploads/2020/12/785054-ecommerce-istock-020119.jpg" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
+                        <a class="text-secondary font-weight-semi-bold" href="#">Playhere website</a>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <img src="https://www.insightssuccess.in/wp-content/uploads/2020/12/785054-ecommerce-istock-020119.jpg" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
+                        <a class="text-secondary font-weight-semi-bold" href="#">Playhere</a>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <img src="https://www.insightssuccess.in/wp-content/uploads/2020/12/785054-ecommerce-istock-020119.jpg" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
+                        <a class="text-secondary font-weight-semi-bold" href="#">Playhere</a>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <img src="https://www.insightssuccess.in/wp-content/uploads/2020/12/785054-ecommerce-istock-020119.jpg" style="width: 80px; height: 80px; object-fit: cover;">
+                    <div class="d-flex align-items-center bg-light px-3" style="height: 80px;">
+                        <a class="text-secondary font-weight-semi-bold" href="#">Playhere</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Top News Slider End -->
+
+
+    <!-- Main News Slider Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0">
+
+                    <!--  it can show only three latest  news -->
+
+                        <div class="position-relative overflow-hidden" style="height: 435px;">
+                            <img class="img-fluid h-100" src="https://images.prismic.io/edapp-website/MTcwMTVmZjMtNmVjYy00NDJkLWJhZDYtZTM2M2ZiNGZkNzc4_online_quiz_makers-jpg_iaa?auto=compress,format&rect=10,0,1340,700&w=1200&h=627" style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-1">
+                                    <a class="text-white" href="#">Python Django</a>
+                                    <span class="px-2 text-white">/</span>
+                                    <a class="text-white" href="#">2020-5-10</a>
+                                </div>
+                                <a class="h2 m-0 text-white font-weight-bold" href="#">Quiz Website </a>
+                            </div>
+                        </div>
+
+                        <div class="position-relative overflow-hidden" style="height: 435px;">
+                            <img class="img-fluid h-100" src="https://weblium.com/blog/wp-content/uploads/2019/12/image7.png" style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-1">
+                                    <a class="text-white" href="#">Java Android</a>
+                                    <span class="px-2 text-white">/</span>
+                                    <a class="text-white" href="#">2020-5-10</a>
+                                </div>
+                                <a class="h2 m-0 text-white font-weight-bold" href="#">LoveBirds Tracker </a>
+                            </div>
+                        </div>
+
+                        <div class="position-relative overflow-hidden" style="height: 435px;">
+                            <img class="img-fluid h-100" src="https://blog.apptopia.com/hubfs/Payment%20apps%20cover%20photo.jpg" style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-1">
+                                    <a class="text-white" href="#">Flutter</a>
+                                    <span class="px-2 text-white">/</span>
+                                    <a class="text-white" href="#">2020-5-10</a>
+                                </div>
+                                <a class="h2 m-0 text-white font-weight-bold" href="#">Payment App </a>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main News Slider End -->
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row mb-3">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                                <h3 class="m-0">Top Projects</h3>
+                                <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{{news.0.image.url}}" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 14px;">
+                                        <span class="px-1">/</span>
+                                        <span>{{news.0.date}}</span>
+                                    </div>
+                                    <a class="h4" href="http://127.0.0.1:8000/single/{{news.0.id}}">{{news.0.title}}</a>
+                                    <p class="m-0">{{news.0.des}}</p>
+                                </div>
+                            </div>
+                            {% for n in news %}
+<!--                           {% if n.id|divisibleby:2 %}-->
+                            <div class="d-flex mb-3">
+                                <img src="{{n.image.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+                                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                                    <div class="mb-1" style="font-size: 13px;">
+                                        <a href="http://127.0.0.1:8000/single/{{n.id}}">{{n.category}}</a>
+                                        <span class="px-1">/</span>
+                                        <span>{{n.date}}</span>
+                                    </div>
+                                    <a class="h6 m-0" href="http://127.0.0.1:8000/single/{{n.id}}">{{n.title}}</a>
+                                </div>
+                            </div>
+<!--                            {% endif %}-->
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{{news.1.image.url}}" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 14px;">
+                                        <a href="http://127.0.0.1:8000/single/{{news.1.id}}">{{news.1.category}}</a>
+                                        <span class="px-1">/</span>
+                                        <span>news.1.date</span>
+                                    </div>
+                                    <a class="h4" href="http://127.0.0.1:8000/single/{{news.1.id}}">{{news.1.title}}</a>
+                                    <p class="m-0">{{news.1.des}}</p>
+                                </div>
+                            </div>
+
+                            {%for i in news%}
+                            {% if forloop.counter > 2 %}
+                            <div class="d-flex mb-3">
+                                <img src="{{i.image.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+                                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                                    <div class="mb-1" style="font-size: 13px;">
+                                        <a href="http://127.0.0.1:8000/single/{{i.id}}">{{i.category}}</a>
+                                        <span class="px-1">/</span>
+                                        <span>{{i.date}}</span>
+                                    </div>
+                                    <a class="h6 m-0" href="http://127.0.0.1:8000/single/{{i.id}}">{{i.title}}</a>
+                                </div>
+                            </div>
+                            {%endif%}
+                            {%endfor%}
+                        </div>
+                    </div>
+
+                    <div class="mb-3 pb-3">
+                        <a href=""><img class="img-fluid w-100" src="img/ads-700x70.jpg" alt=""></a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
+                                <h3 class="m-0">Latest Projects</h3>
+                                <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{{news.0.image.url}}" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 14px;">
+                                        <a href="http://127.0.0.1:8000/single/{{news.0.id}}">{{news.0.category}}</a>
+                                        <span class="px-1">/</span>
+                                        <span>{{news.0.date}}</span>
+                                    </div>
+                                    <a class="h4" href="http://127.0.0.1:8000/single/{{news.0.id}}">{{news.0.title}}</a>
+                                    <p class="m-0">{{news.0.des}}</p>
+                                </div>
+                            </div>
+<!--                            <div class="d-flex mb-3">-->
+<!--                                <img src="img/news-100x100-5.jpg" style="width: 100px; height: 100px; object-fit: cover;">-->
+<!--                                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">-->
+<!--                                    <div class="mb-1" style="font-size: 13px;">-->
+<!--                                        <a href="">Technology</a>-->
+<!--                                        <span class="px-1">/</span>-->
+<!--                                        <span>January 01, 2045</span>-->
+<!--                                    </div>-->
+<!--                                    <a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec adipis elit</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="{{news.1.image.url}}" style="object-fit: cover;">
+                                <div class="overlay position-relative bg-light">
+                                    <div class="mb-2" style="font-size: 14px;">
+                                        <a href="http://127.0.0.1:8000/single/{{news.1.id}}">{{news.1.category}}</a>
+                                        <span class="px-1">/</span>
+                                        <span>{{news.1.date}}</span>
+                                    </div>
+                                    <a class="h4" href="http://127.0.0.1:8000/single/{{news.1.id}}">{{news.1.title}}</a>
+                                    <p class="m-0">{{news.1.des}}</p>
+                                </div>
+                            </div>
+<!--                            <div class="d-flex mb-3">-->
+<!--                                <img src="img/news-100x100-2.jpg" style="width: 100px; height: 100px; object-fit: cover;">-->
+<!--                                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">-->
+<!--                                    <div class="mb-1" style="font-size: 13px;">-->
+<!--                                        <a href="">Technology</a>-->
+<!--                                        <span class="px-1">/</span>-->
+<!--                                        <span>January 01, 2045</span>-->
+<!--                                    </div>-->
+<!--                                    <a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec adipis elit</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 pt-3 pt-lg-0">
+                    <!-- Social Follow Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Follow Us</h3>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #39569E;">
+                                <small class="fab fa-facebook-f mr-2"></small><small>12,345 Fans</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #52AAF4;">
+                                <small class="fab fa-twitter mr-2"></small><small>12,345 Followers</small>
+                            </a>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #0185AE;">
+                                <small class="fab fa-linkedin-in mr-2"></small><small>12,345 Connects</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #C8359D;">
+                                <small class="fab fa-instagram mr-2"></small><small>{{insta}} Followers</small>
+                            </a>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none mr-2" style="background: #DC472E;">
+                                <small class="fab fa-youtube mr-2"></small><small>12,345 Subscribers</small>
+                            </a>
+                            <a href="" class="d-block w-50 py-2 px-3 text-white text-decoration-none ml-2" style="background: #1AB7EA;">
+                                <small class="fab fa-vimeo-v mr-2"></small><small>12,345 Followers</small>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Social Follow End -->
+
+                    <!-- Newsletter Start -->
+                    <div class="pb-3">
+                        <div class="bg-light py-2 px-4 mb-3">
+                            <h3 class="m-0">Connect Us</h3>
+                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="bg-light text-center p-4 mb-3">
+                                <p>I Will help you to get latest Projects information on you mail</p>
+                                <div class="input-group" style="width: 100%;">
+                                    <input type="email" name="eml" class="form-control form-control-lg" placeholder="Your Email" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">connect</button>
+                                    </div>
+                                </div>
+                                <small>we did not share you</small>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- News With Sidebar End -->
+
+
+    {% endblock %}
+    <footer class="bg-light text-center text-lg-start mt-5">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2023 Copyright:
+    <a class="text-dark" href="https://codeajay.blogspot.com/">codeAj Production</a>
+    </div>
+
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-dark back-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'eplayhere/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'eplayhere/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{% static 'eplayhere/mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'eplayhere/mail/contact.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'eplayhere/js/main.js' %}"></script>
+</body>
+
+</html>
