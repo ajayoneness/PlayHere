@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import certificateStatic,certificateDynamic
 
-# Register your models here.
+
+
+admin.site.register(certificateDynamic)
+admin.site.register(certificateStatic)

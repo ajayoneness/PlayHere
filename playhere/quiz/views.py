@@ -24,16 +24,9 @@ def fileHandel():
 
 
 def profile1(request):
-    count = 0
-    # request.session['lis']=0
-    # request.session['tlis']=0
-    # request.session['count']=0
+
     request.session['tenque'] = {}
 
-    # print(type(request.session['lis']))
-    # print(request.session['lis'])
-    # lis.clear()
-    # tlis.clear()
     rank = 0
     pobj = profile.objects.filter(p_username=request.user.username).order_by("-id")
     code = profile.objects.filter(category = 'coding' , p_username=request.user.username).count()
@@ -166,10 +159,6 @@ def ques(request,idd):
                 print('mark count : ', request.session['lis'])
 
 
-
-
-
-
                 q = random.randint(0, count)
                 set = request.session["tenque"]
                 set[f"q{request.session['count']}"] = idd
@@ -194,10 +183,6 @@ def ques(request,idd):
                     print(f"ten question dic : {request.session['tenque']}")
                     return redirect(f'/quiz/result/{sumlis}')
 
-
-
-
-
                 return redirect(f'/quiz/ques/{q}')
 
             else:
@@ -211,9 +196,6 @@ def ques(request,idd):
 
                 request.session['lis'] += 0
                 print('mark count : ',request.session['lis'])
-
-
-
 
 
                 q = random.randint(0, count)

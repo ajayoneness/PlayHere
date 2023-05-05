@@ -6,10 +6,23 @@ from points.models import allpoints
 
 
 
+
 class codeajgptSerializer(serializers.Serializer):
     input_string = serializers.CharField(max_length=100)
     api_key = serializers.CharField(max_length=250)
     no_of_words = serializers.IntegerField()
+
+
+class certificateAPISerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+    name = serializers.CharField(max_length=100)
+    topic = serializers.CharField(max_length=100)
+    exm_date = serializers.DateField()
+
+
+
+
+
 
 
 

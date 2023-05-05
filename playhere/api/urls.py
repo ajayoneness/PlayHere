@@ -11,7 +11,6 @@ urlpatterns = [
     path("pointsapi/",views.pointsapi, name='pointsapi'),
     path("test/",views.test,name="test"),
     path('codeajgptapi/', views.codeajgptAPI.as_view(), name='codeajgptapi'),
+    path('certificateapi/', views.certificateAPI.as_view(), name='certificateapi'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

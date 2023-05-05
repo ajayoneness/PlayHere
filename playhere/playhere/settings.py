@@ -14,7 +14,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'contactus',
     'rest_framework',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
