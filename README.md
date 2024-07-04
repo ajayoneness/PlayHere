@@ -59,7 +59,7 @@ This platform works only on the Internet, so you can't play offline mode.
 
 ## Support
 
-If you encounter any issues or have any questions, please don't hesitate to reach out to us at https://playhere.pythonanywhere.com/contactus/. We're always here to help!
+If you encounter any issues or have any questions, please don't hesitate to reach out to us at https://playhere.onrender.com/contactus/. We're always here to help!
 
 ## CONCLUSION
 
